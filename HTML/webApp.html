@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>AQ Web App</title>
-    <script type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script type="application/javascript" src="/js/webApp.js"></script>
+
 
 </head>
-<body id="app" onload="Init()">
+<body>
 
-    <div id="map_one" v-model="map1">
+   <div id="app">
+        <h1>{{ map }}</h1>
+   </div>
 
-    </div>
-
-    <div id="map_two" v-model="map2">
-
-    </div>
-
-
-
+   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script type="text/javascript" src="webApp.js"></script>
 
 
-</body>
+
+
+</body> 
 </html>
