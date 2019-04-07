@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55392343-45fc-4906-a2ae-d56ac1661e16" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/HTML/webApp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HTML/webApp.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/SosaRebeccaAQ.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SosaRebeccaAQ.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTML/webApp.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/webApp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/webApp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/webApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/webApp.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,8 +25,11 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/HTML/webApp.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+                <state relative-caret-position="353">
+                  <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+                  <folding>
+                    <element signature="e#0#6#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -39,7 +42,16 @@
             <entry file="file://$PROJECT_DIR$/HTML/webApp.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="161">
-                  <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+                  <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/HTML/webApp.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="5" selection-start-column="5" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -64,6 +76,8 @@
       <list>
         <option value="$USER_HOME$/AppData/Local/Temp/Temp1_spotify.zip/spotify/scripts/spotifysearch.js" />
         <option value="$PROJECT_DIR$/js/webApp.js" />
+        <option value="$PROJECT_DIR$/HTML/webApp.js" />
+        <option value="$PROJECT_DIR$/HTML/webApp.css" />
         <option value="$PROJECT_DIR$/HTML/webApp.html" />
       </list>
     </option>
@@ -71,6 +85,9 @@
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -93,7 +110,15 @@
             <path>
               <item name="SosaRebeccaAQ" type="b2602c69:ProjectViewProjectNode" />
               <item name="SosaRebeccaAQ" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="HTML" type="462c0819:PsiDirectoryNode" />
+              <item name="leaflet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SosaRebeccaAQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SosaRebeccaAQ" type="462c0819:PsiDirectoryNode" />
+              <item name="HTML" type="462c0819:PsiDirectoryNode" />
+              <item name="leaflet" type="462c0819:PsiDirectoryNode" />
+              <item name="leaflet.js" type="620a8d5e:NestingTreeNode" />
             </path>
           </expand>
           <select />
@@ -143,12 +168,12 @@
       <updated>1554569388455</updated>
       <workItem from="1554569391403" duration="2021000" />
       <workItem from="1554663062731" duration="416000" />
-      <workItem from="1554663564687" duration="136000" />
+      <workItem from="1554663564687" duration="3039000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3294000" />
+    <option name="totallyTimeSpent" value="6197000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -181,17 +206,41 @@
     <entry file="file://$PROJECT_DIR$/webapp.html" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_spotify.zip/spotify/index.html" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_spotify.zip/spotify/scripts/spotifysearch.js" />
+    <entry file="file://$PROJECT_DIR$/HTML/leaflet/leaflet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML/leaflet/leaflet.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10012" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML/webApp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HTML/webApp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
-          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HTML/webApp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+        <state relative-caret-position="353">
+          <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#6#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

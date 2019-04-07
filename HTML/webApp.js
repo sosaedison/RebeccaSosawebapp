@@ -6,3 +6,4 @@ var app = new Vue ({
         map : 'Hello World'
     }
 });
+
