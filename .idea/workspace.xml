@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55392343-45fc-4906-a2ae-d56ac1661e16" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/HTML/mapCtrl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTML/webApp.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/webApp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTML/webApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/webApp.js" afterDir="false" />
     </list>
@@ -17,43 +15,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.53193146">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/HTML/webApp.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="381">
-                  <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$USER_HOME$/Downloads/spotify 2/scripts/spotifysearch.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="898">
-                  <caret line="56" column="22" lean-forward="true" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/HTML/webApp.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="178">
-                  <caret line="45" column="27" lean-forward="true" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="28" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HTML/webApp.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HTML/webApp.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -79,9 +60,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-7" />
+    <option name="width" value="943" />
+    <option name="height" value="1087" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -91,7 +73,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -104,10 +85,24 @@
               <item name="SosaRebeccaAQ" type="462c0819:PsiDirectoryNode" />
               <item name="HTML" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SosaRebeccaAQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SosaRebeccaAQ" type="462c0819:PsiDirectoryNode" />
+              <item name="HTML" type="462c0819:PsiDirectoryNode" />
+              <item name="leaflet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SosaRebeccaAQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SosaRebeccaAQ" type="462c0819:PsiDirectoryNode" />
+              <item name="HTML" type="462c0819:PsiDirectoryNode" />
+              <item name="leaflet" type="462c0819:PsiDirectoryNode" />
+              <item name="leaflet.js" type="620a8d5e:NestingTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -157,13 +152,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18806000" />
+    <option name="totallyTimeSpent" value="21756000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="943" height="1087" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.066948555" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14033149" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -221,24 +215,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/spotify 2/scripts/spotifysearch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="898">
-          <caret line="56" column="22" lean-forward="true" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Downloads/spotify 2/scripts/spotifysearch.js" />
     <entry file="file://$PROJECT_DIR$/HTML/webApp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="404">
+          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HTML/webApp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="45" column="27" lean-forward="true" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="28" />
+        <state relative-caret-position="450">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
     </entry>
