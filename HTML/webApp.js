@@ -40,8 +40,6 @@ function ParseResults(data) {
         if (i === 1)
             app.reqResults = data[k];
 
-
-
     for (x in app.reqResults)
         app.count.push(app.reqResults[x].count);
 
