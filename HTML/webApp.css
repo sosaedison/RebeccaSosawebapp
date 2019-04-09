@@ -1,1 +1,9 @@
-#map1 { height: 180px; }
+#map1 {
+    height: 180px;
+    width: 50%;
+}
+
+ table, td {
+     border: 1px solid black;
+     width: 50%;
+ }
