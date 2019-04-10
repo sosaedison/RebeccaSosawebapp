@@ -32,7 +32,7 @@ function ParseResults(data) {
     var x;
     let f;
     for(var k in data)
-        console.log(data)
+        console.log(data);
         i++;
         if (i === 1)
             app.reqResults = data[k];

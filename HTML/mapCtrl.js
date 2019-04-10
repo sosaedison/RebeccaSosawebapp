@@ -1,6 +1,8 @@
 var mymap = L.map('map1').setView([51.505, -0.09], 13);
 
+function makeMap(){
 
+}
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(mymap);
@@ -38,8 +40,10 @@ function onMapClick(e) {
 }
 
 function onMouseUp(e) {
-    map.panTo([51.498827, -0.22645]);
+    mymap.panTo([51.498827, -0.22645]);
 }
+
+mymap.on('mouseup', onMouseUp);
 mymap.on('click', onMapClick);
 
 var popup = L.popup();
