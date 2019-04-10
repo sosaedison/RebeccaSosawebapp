@@ -1,6 +1,8 @@
 let countries = "https://api.openaq.org/v1/countries";
 let cities = 'https://api.openaq.org/v1/cities?limit=1000';
 let fetches = 'https://api.openaq.org/v1/fetches';
+let measurements = 'https://api.openaq.org/v1/measurements';
+let latest = 'https://api.openaq.org/v1/latest?coordinates=';
 
 var app = new Vue ({
 
@@ -16,9 +18,13 @@ var app = new Vue ({
     }
 });
 
-function GetResults() {
+function GetResultsLatLng(lat, lng) {
+    lat  = lat.toFixed(3);
+    lng = lng.toFixed(3);
+    let stuff = latest+ lat + ',' + lng;
+    console.log(stuff);
     let request = {
-        url: cities,
+        url: stuff,
         dataType: "json",
         success: ParseResults
     };
@@ -67,8 +73,15 @@ function myCreateFunction(city, country, count, locations) {
 }
 var mymap = L.map('map1').setView([51.505, -0.09], 13);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+// }).addTo(mymap);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox.streets'
 }).addTo(mymap);
 
 var marker = L.marker([51.5, -0.09]).addTo(mymap);
@@ -95,9 +108,6 @@ var popup = L.popup()
 // function onMouseUp(e) {
 //     mymap.panTo([51.498827, -0.22645]);
 // }
-
-mymap.on('click', onMapClick);
-
 var popup = L.popup();
 
 function onMapClick(e) {
@@ -107,9 +117,10 @@ function onMapClick(e) {
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(mymap);
-    // let LATLNG = e.latlng;
+        let latlong = e.latlng;
     // console.log(LATLNG.lat);
     // console.log(LATLNG.lng);
+        GetResultsLatLng(latlong.lat, latlong.lng);
 }
 
 mymap.on('click', onMapClick);
