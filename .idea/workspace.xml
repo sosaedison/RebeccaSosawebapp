@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55392343-45fc-4906-a2ae-d56ac1661e16" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/HTML/mapCtrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/mapCtrl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/webApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/webApp.js" afterDir="false" />
-    </list>
+    <list default="true" id="55392343-45fc-4906-a2ae-d56ac1661e16" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -28,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HTML/mapCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="311">
+              <caret line="42" column="35" lean-forward="true" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="35" />
               <folding>
                 <element signature="e#0#6#0" expanded="true" />
               </folding>
@@ -179,7 +176,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22049000" />
+    <option name="totallyTimeSpent" value="22188000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="73" y="23" width="943" height="877" extended-state="0" />
@@ -257,8 +254,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HTML/mapCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="311">
+          <caret line="42" column="35" lean-forward="true" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="35" />
           <folding>
             <element signature="e#0#6#0" expanded="true" />
           </folding>
