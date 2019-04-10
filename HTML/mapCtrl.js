@@ -37,6 +37,9 @@ function onMapClick(e) {
     alert("You clicked the map at " + e.latlng);
 }
 
+function onMouseUp(e) {
+    map.panTo([51.498827, -0.22645]);
+}
 mymap.on('click', onMapClick);
 
 var popup = L.popup();

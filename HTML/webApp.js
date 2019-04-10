@@ -26,16 +26,13 @@ function Init() {
 
 }
 
-function toString(data) {
-    console.log(data.results.length)
-}
-
 function ParseResults(data) {
 
     var i = 0;
     var x;
     let f;
     for(var k in data)
+        console.log(data)
         i++;
         if (i === 1)
             app.reqResults = data[k];
