@@ -1,0 +1,143 @@
+* {
+    margin: 0 auto;
+}
+
+html {
+    width: 100%;
+    height:100%;
+    font-size: 62.5%;
+    font-family: Helvetica, Arial, sans-serif;
+	}
+	<head>
+	<span class="floatleft"><link rel="stylesheet" href="style.css"/></span>
+			
+	a:link{color:rgb(255,255,255);text-decoration: none; padding: 0px 4px;}
+	a:visited{color:rgb(255,255,255);text-decoration: none;}
+	a:focus{color:rgb(225,225,12);text-decoration: none;}
+	a:hover{font-style: italic; color:FF1A1A;text-decoration: none;}
+	a:active{color:rgb(10,10,10);text-decoration: none;}
+
+	body
+	{
+		background-color : rgb(100,23,90);
+		width: 100%;
+		font-size: 1.25rem;
+		border-spacing: 1rem;
+		text-align: left;
+		width:85rem;
+		table:hover{font-style: italic; color:FF1A1A;text-decoration: none;background-color:rgb(10,10,10);};
+	}
+
+	body img
+	{
+		height:20rem;
+		width:17rem;
+		float:left;
+	}
+
+	#header
+	{
+		background-image: linear-gradient(to bottom right,rgb(0, 0, 0),rgb(105, 23, 94));
+		position:fixed;
+		width: 100%;
+		height:10rem;
+		text-align: left;
+		color: rgb(255,255,255);
+	}
+
+	#header img 
+	{ 
+		float: left; 
+ 		padding: 5px 5px 5px 5px;
+ 		height: 8rem;
+ 		width:6.5rem;
+	}	
+	
+	#bodytext
+	{
+		background-color : rgb(255, 218, 254);
+		padding-top :10.5rem;
+		vertical-align: center;
+		width: auto;
+		font-size: 1.25rem;
+	}
+	
+	#bodytext img
+	{
+		
+		padding: 2rem;
+	}
+
+	#navigation
+	{
+		color:rgb(255,255,255);
+		font-size:1.25rem;
+		float:left;
+	}
+
+	#search
+	{
+		float: right;
+	}
+
+	img
+	{
+		size: 16rem;
+	}
+	
+	h1
+	{
+		font-size: 8rem; 
+	}
+	
+	h2
+	{
+		padding-right: 1.3rem;
+		padding-left: 1.3rem;
+	}
+	
+	#bodytext p
+	{
+		padding: 1.3rem;
+	}
+	
+	
+	
+table img{
+  width:25rem;
+  height: 25rem;
+  float:left;
+  padding:5rem;
+}
+
+table h3{
+	background-color:rgb(255,255,255);
+}
+
+table p{
+	background-color:rgb(255,255,255);
+	padding-bottom:10rem;
+	
+}
+
+#map{
+width:25rem
+height: 25rem;
+position:relative;
+paddingP:5rem;
+}
+#map2{
+width:25rem
+height: 25rem;
+position:relative;
+paddingP:5rem;
+}
+
+.leaflet-pane leaflet-map-pane{transform: translate3d(0px, 0px, 0px);}
+
+#footer
+{
+padding-top:2rem;
+color: #F1F1F1;
+background-color:rgb(102, 102, 102);
+}
