@@ -4,6 +4,17 @@ let fetches = 'https://api.openaq.org/v1/fetches';
 let measurements = 'https://api.openaq.org/v1/measurements';
 let latest = 'https://api.openaq.org/v1/latest?coordinates=';
 
+class LatLng {
+    constructor(lat, lng){
+        this.lat = lat.toFixed(3);
+        this.lng = lng.toFixed(3);
+    }
+    toString() {
+        let string = this.lat + ',' + this.lng;
+        console.log(string);
+        return string;
+    }
+}
 var app = new Vue ({
 
     el: '#app',
@@ -11,13 +22,23 @@ var app = new Vue ({
     data: {
         map : 'Hello World',
         reqResults: [],
+        coordinates: [],
         cityNames: [],
-        count: [],
+        AQ: [],
         country: [],
         locations: []
-
+    },
+    components: {
+        'map' : Map
     }
 });
+
+Vue.component('map-table', {
+   data: function () {
+       return L.map('map1').setView([44.9544, -93.0913], 10);
+   }
+});
+
 
 function GetResultsLatLng(lat, lng) {
     lat  = lat.toFixed(3);
@@ -30,7 +51,6 @@ function GetResultsLatLng(lat, lng) {
         success: ParseResults
     };
     $.ajax(request);
-
 }
 
 function ParseResults(data) {
@@ -44,33 +64,41 @@ function ParseResults(data) {
         if (i === 1)
             app.reqResults = data[k];
 
+
     for (x in app.reqResults)
-        app.count.push(app.reqResults[x].count);
+        var temp = new LatLng(app.reqResults[x].coordinates.latitude,
+            app.reqResults[x].coordinates.longitude).toString();
+        app.coordinates.push(temp);
+
+    for (x in app.reqResults)
+        app.AQ.push(app.reqResults[x].measurements[x].value);
 
     for(x in app.reqResults)
         app.cityNames.push(app.reqResults[x].city);
 
     for(x in app.reqResults)
-        app.locations.push(app.reqResults[x].locations);
+        app.locations.push(app.reqResults[x].location);
 
     for(x in app.reqResults)
         app.country.push(app.reqResults[x].country);
 
     for (f = 0; f<app.cityNames.length;f++)
-        myCreateFunction(app.cityNames[f], app.country[f], app.count[f], app.locations[f])
+        myCreateFunction(app.cityNames[f], app.country[f], app.coordinates[f], app.locations[f], app.AQ[f])
 }
 
-function myCreateFunction(city, country, count, locations) {
+function myCreateFunction(city, country, coordinates, locations, values) {
     let table = document.getElementById("map1_table");
     let row = table.insertRow(0);
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
+    let cell5 = row.insertCell(4);
     cell1.innerHTML = city;
     cell2.innerHTML = country;
-    cell3.innerHTML = count;
+    cell3.innerHTML = coordinates;
     cell4.innerHTML = locations;
+    cell5.innerHTML = values;
 }
 var mymap = L.map('map1').setView([44.9544, -93.0913], 10);
 
