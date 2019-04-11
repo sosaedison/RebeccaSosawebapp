@@ -15,6 +15,7 @@ var app = new Vue ({
         count: [],
         country: [],
         locations: []
+
     }
 });
 
@@ -71,11 +72,9 @@ function myCreateFunction(city, country, count, locations) {
     cell3.innerHTML = count;
     cell4.innerHTML = locations;
 }
-var mymap = L.map('map1').setView([51.505, -0.09], 13);
+var mymap = L.map('map1').setView([44.9544, -93.0913], 10);
 
-// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-// }).addTo(mymap);
+
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -111,8 +110,6 @@ var popup = L.popup()
 var popup = L.popup();
 
 function onMapClick(e) {
-    //alert("You clicked the map at " + e.latlng);
-
     popup
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
