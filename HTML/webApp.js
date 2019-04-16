@@ -32,7 +32,7 @@ function GetResultsLatLng(lat, lng) {
     lat  = lat.toFixed(3);
     lng = lng.toFixed(3);
     let stuff = latest+ lat + ',' + lng;
-    console.log(stuff);
+    // console.log(stuff);
     let request = {
         url: stuff,
         dataType: "json",
@@ -47,7 +47,7 @@ function ParseResults(data) {
     var x;
     let f;
     for(var k in data)
-        console.log(data);
+        // console.log(data);
         i++;
         if (i === 1)
             app.reqResults = data[k];
@@ -94,8 +94,9 @@ function myCreateFunction(city, country, coordinates, locations, values) {
  * ****************************
  */
 var mymap = L.map('map1').setView([44.9544, -93.0913], 10);
-
 console.log(mymap.getBounds());
+console.log(mymap.getCenter());
+
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     maxZoom: 18,
@@ -104,6 +105,8 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     id: 'mapbox.streets'
 }).addTo(mymap);
+
+
 
 
 // var marker = L.marker([51.5, -0.09]).addTo(mymap);
@@ -131,7 +134,7 @@ var popup = L.popup();
 
 function onMouseUp(e) {
     popup
-        //.setLatLng(e.latlng)
+        .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(mymap);
 
@@ -141,3 +144,5 @@ function onMouseUp(e) {
 }
 
 mymap.on('mouseup', onMouseUp);
+
+
