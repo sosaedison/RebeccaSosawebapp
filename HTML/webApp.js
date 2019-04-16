@@ -8,7 +8,7 @@ class LatLng {
     }
     toString() {
         let string = this.lat + ',' + this.lng;
-        console.log(string);
+        //console.log(string);
         return string;
     }
 }
@@ -28,11 +28,16 @@ var app = new Vue ({
     }
 });
 
-function GetResultsLatLng(lat, lng) {
-    lat  = lat.toFixed(3);
-    lng = lng.toFixed(3);
-    let stuff = latest+ lat + ',' + lng;
-    // console.log(stuff);
+function GetResultsLatLng() {
+
+    var latlng1 = L.latLng(mymap.getCenter().lat, mymap.getCenter().lng);
+    var latlng2 = L.latLng(mymap.getBounds().getNorthEast().lat, mymap.getBounds().getNorthEast().lng);
+
+    let radius = mymap.distance(latlng1, latlng2);
+
+    let stuff = latest+ mymap.getCenter().lat + ',' + mymap.getCenter().lng +'&'+'radius=' + radius;
+    console.log(stuff);
+
     let request = {
         url: stuff,
         dataType: "json",
@@ -47,11 +52,11 @@ function ParseResults(data) {
     var x;
     let f;
     for(var k in data)
-        // console.log(data);
         i++;
         if (i === 1)
             app.reqResults = data[k];
 
+    
 
     for (x in app.reqResults)
         var temp = new LatLng(app.reqResults[x].coordinates.latitude,
@@ -59,7 +64,7 @@ function ParseResults(data) {
         app.coordinates.push(temp);
 
     for (x in app.reqResults)
-        app.AQ.push(app.reqResults[x].measurements[x].value);
+        app.AQ.push(app.reqResults[x].measurements.value);
 
     for(x in app.reqResults)
         app.cityNames.push(app.reqResults[x].city);
@@ -91,13 +96,8 @@ function myCreateFunction(city, country, coordinates, locations, values) {
 
 /******************************
  *      MAP STUFF IS HERE     *
- * ****************************
- */
+ * ****************************/
 var mymap = L.map('map1').setView([44.9544, -93.0913], 10);
-console.log(mymap.getBounds());
-console.log(mymap.getCenter());
-console.log(mymap.getPixelBounds())
-
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     maxZoom: 18,
@@ -106,9 +106,6 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     id: 'mapbox.streets'
 }).addTo(mymap);
-
-
-
 
 // var marker = L.marker([51.5, -0.09]).addTo(mymap);
 // var circle = L.circle([51.508, -0.11], {
@@ -131,19 +128,16 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 //     .setContent("I am a standalone popup.")
 //     .openOn(mymap);
 
-var popup = L.popup();
+// var popup = L.popup();
 
-function onMouseUp(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(mymap);
-
-        let latlong = e.latlng;
-        GetResultsLatLng(latlong.lat, latlong.lng);
-
+function onMove(){
+    GetResultsLatLng();
 }
+function timeOut(){
+    setTimeout(onMove, 2000)
+}
+mymap.on('mouseup', timeOut);
+mymap.on('zoomend', timeOut);
 
-mymap.on('mouseup', onMouseUp);
 
 
