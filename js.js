@@ -8,7 +8,7 @@
 			minZoom:9,
 			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 				'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-				'Imagery Â© <a href="https://www.mapbox.com/">Mapbox</a>',
+				'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 			id: 'mapbox.streets'
 		}).addTo(Mymap);
 /*		var north= Mymap.getNorth();
@@ -29,7 +29,7 @@ var Mymap2 = L.map('map2').setView([51.505, -0.09], 13);
 					minZoom:9,
 					attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 						'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-						'Imagery Â© <a href="https://www.mapbox.com/">Mapbox</a>',
+						'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 					id: 'mapbox.streets'
 				}).addTo(Mymap2);
 
@@ -52,7 +52,7 @@ class LatLng {
 var app = new Vue (
 	{
 
-    el: '#app',
+    el: '#maps',
 
     data:
     	{
@@ -138,7 +138,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
         '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery Â© <a href="https://www.mapbox.com/">Mapbox</a>',
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     id: 'mapbox.streets'
 }).addTo(mymap);
 
