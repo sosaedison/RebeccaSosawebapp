@@ -96,6 +96,7 @@ function myCreateFunction(city, country, coordinates, locations, values) {
 var mymap = L.map('map1').setView([44.9544, -93.0913], 10);
 console.log(mymap.getBounds());
 console.log(mymap.getCenter());
+console.log(mymap.getPixelBounds())
 
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
