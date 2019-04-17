@@ -56,8 +56,6 @@ function ParseResults(data) {
         if (i === 1)
             app.reqResults = data[k];
 
-    
-
     for (x in app.reqResults)
         var temp = new LatLng(app.reqResults[x].coordinates.latitude,
             app.reqResults[x].coordinates.longitude).toString();
