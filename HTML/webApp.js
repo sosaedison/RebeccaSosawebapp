@@ -54,7 +54,7 @@ function ParseResults(data) {
     for(var k in data)
         i++;
         if (i === 1)
-            app.reqResults = data[k];
+            app.reqResults.push(data[k]);
 
     for (x in app.reqResults)
         var temp = new LatLng(app.reqResults[x].coordinates.latitude,
@@ -75,6 +75,7 @@ function ParseResults(data) {
 
     for (f = 0; f<app.cityNames.length;f++)
         myCreateFunction(app.cityNames[f], app.country[f], app.coordinates[f], app.locations[f], app.AQ[f])
+    console.log(app.cityNames.length);
 }
 
 function myCreateFunction(city, country, coordinates, locations, values) {
