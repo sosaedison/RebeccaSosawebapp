@@ -1,6 +1,8 @@
 let measurements = 'https://api.openaq.org/v1/measurements';
 let latest = 'https://api.openaq.org/v1/latest?coordinates=';
 
+
+
 class LatLng {
     constructor(lat, lng){
         this.lat = lat.toFixed(3);
@@ -11,13 +13,14 @@ class LatLng {
 
 
 function GetResultsLatLng() {
+    var date = new Date();
 
     var latlng1 = L.latLng(mymap.getCenter().lat, mymap.getCenter().lng);
     var latlng2 = L.latLng(mymap.getBounds().getNorthEast().lat, mymap.getBounds().getNorthEast().lng);
 
     let radius = mymap.distance(latlng1, latlng2);
-
-    let stuff = latest+ mymap.getCenter().lat + ',' + mymap.getCenter().lng +'&'+'radius=' + radius;
+    let limit = '&limit=10000';
+    let stuff = latest+ mymap.getCenter().lat + ',' + mymap.getCenter().lng +'&'+'radius=' + radius+limit;
     console.log(stuff);
 
     let request = {
@@ -48,8 +51,9 @@ function ParseResults(data) {
     let len = data.results.length;
     // console.log(len)
     for ( var p in data.results)
-        console.log(data.results[p].city +data.results[p].country)
+        // console.log(p+ ' '+data.results[p].city + ' ' + data.results[p].country);
         app.cities.push(data.results[p].city);
+    console.log(app.cities.length)
 
         //console.log('country ' +data.results[p].country);
 
@@ -96,7 +100,7 @@ function myCreateFunction(city, country, coordinates, locations, values) {
 /******************************
  *      MAP STUFF IS HERE     *
  * ****************************/
-var mymap = L.map('map1').setView([44.9544, -93.0913], 6);
+var mymap = L.map('map1').setView([44.9544, -93.0913], 3);
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     maxZoom: 18,
