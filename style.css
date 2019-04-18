@@ -137,9 +137,10 @@ table p{
 #map{
 width:20rem;
 height: 20rem;
-position:relative;
+
+
+float:left;
 padding:5rem;
-float:left; 
 outline: none;
 }
 #map2{
@@ -147,7 +148,6 @@ width:20rem;
 height: 20rem;
 position:relative;
 padding:5rem;
-float:left; 
 outline: none;
 }
 

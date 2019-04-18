@@ -1,54 +1,16 @@
 
-		var Mymap = L.map('map').setView([51.505, -0.09], 13);
-		function myFunction() {
-	  	Mymap= L.map('map').setView([document.getElementById("lon").value, document.getElementById("lat").value], 13);
+		 var limit = '&limit=10000';
+function GetJSON(url, callback) {
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (req.readyState == 4 && req.status == 200) {
+            var data = JSON.parse(req.response);
+            callback(data);
+        }
+    };
+    req.open("GET", url, true);
+    req.send();
 }
-		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-			maxZoom: 16,
-			minZoom:9,
-			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-				'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-				'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-			id: 'mapbox.streets'
-		}).addTo(Mymap);
-/*		var north= Mymap.getNorth();
-		var south=Mymap.getSouth();
-		var east=Mymap.getEast();
-		var west=Mymap.getWest();
-		L.marker([(west-east), (north-south)]).addTo(Mymap)
-		    .bindPopup('Center of Map<br>')
-    .openPopup();*/
-
-var Mymap2 = L.map('map2').setView([51.505, -0.09], 13);
-				function myFunction() {
-					  	Mymap2= L.map('map2').setView([document.getElementById("lon2").value, document.getElementById("lat2").value], 13);
-				}
-
-				L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-					maxZoom: 16,
-					minZoom:9,
-					attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-						'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-						'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-					id: 'mapbox.streets'
-				}).addTo(Mymap2);
-
-let measurements = 'https://api.openaq.org/v1/measurements';
-let latest = 'https://api.openaq.org/v1/latest?coordinates=';
-
-class LatLng {
-    constructor(lat, lng)
-    			{
-    			    this.lat = lat.toFixed(3);
-    			    this.lng = lng.toFixed(3);
-   				 }
-    toString()	 {
-        let string = this.lat + ',' + this.lng;
-        console.log(string);
-        return string;
-   				 }
-			}
-
 var app = new Vue (
 	{
 
@@ -67,18 +29,52 @@ var app = new Vue (
 
 function GetResultsLatLng(lat, lng)
 	{
-    lat  = lat.toFixed(3);
-    lng = lng.toFixed(3);
-    let stuff = latest+ lat + ',' + lng;
-    // console.log(stuff);
-    let request =
-    	{
-        url: stuff,
-        dataType: "json",
-        success: ParseResults
-    	};
-    $.ajax(request);
+		if(document.getElementById('loc')!== null)
+		{
+			var loc1 = document.getElementById('loc');
+
+			var url="https://nominatim.openstreetmap.org/search?q=" + loc1.value + "&format=json&accept-language=en"
+			GetJSON(url, function(data) {
+		        data1 = data;
+		    });
+
+			Mymap= L.map('map').setView([loc1.lon, loc1.lat], 13);
+		}
+		else
+		{
+			Mymap= L.map('map').setView([document.getElementById("lon").value, document.getElementById("lat").value], 13);
+		}
+
+   var center1= (Mymap.getCenter());
+   var centerlatlon1= L.latLng(Mymap.getCenter().lat, Mymap.getCenter().lng);
+var cornerlatlon1=L.latLng(Mymap.getBounds().getSouthWest().lat, Mymap.getBounds().getSouthWest().lng);
+var radius1=Mymap.distance(centerlatlon1,cornerlatlon1);
+    		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+				maxZoom: 16,
+				minZoom:9,
+				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+					'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+					'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+				id: 'mapbox.streets'
+		}).addTo(Mymap);
+   Mymap2= L.map('map2').setView([document.getElementById("lon2").value, document.getElementById("lat2").value], 13);
+   var center2= (Mymap2.getCenter());
+   var centerlatlon2= L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
+var cornerlatlon2=L.latLng(Mymap2.getBounds().getSouthWest().lat, Mymap2.getBounds().getSouthWest().lng);
+var radius2=Mymap2.distance(centerlatlon2,cornerlatlon2);
+
+    		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+				maxZoom: 16,
+				minZoom:9,
+				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+					'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+					'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+				id: 'mapbox.streets'
+		}).addTo(Mymap2);
+		let measurements = 'https://api.openaq.org/v1/measurements';
+let latest = 'https://api.openaq.org/v1/latest?coordinates=';
 	}
+
 
 function ParseResults(data) {
 
@@ -92,11 +88,11 @@ function ParseResults(data) {
             app.reqResults = data[k];
 
 
-    for (x in app.reqResults)
+    for (x in app.reqResults){
         var temp = new LatLng(app.reqResults[x].coordinates.latitude,
             app.reqResults[x].coordinates.longitude).toString();
         app.coordinates.push(temp);
-
+	}
     for (x in app.reqResults)
         app.AQ.push(app.reqResults[x].measurements[x].value);
 
@@ -127,22 +123,6 @@ function myCreateFunction(city, country, coordinates, locations, values) {
     cell4.innerHTML = locations;
     cell5.innerHTML = values;
 }
-
-var mymap = L.map('map1').setView([44.9544, -93.0913], 10);
-console.log(mymap.getBounds());
-console.log(mymap.getCenter());
-console.log(mymap.getPixelBounds())
-
-
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox.streets'
-}).addTo(mymap);
-
-
 
 
 // var marker = L.marker([51.5, -0.09]).addTo(mymap);

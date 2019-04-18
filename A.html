@@ -33,22 +33,59 @@
 				<div id="maps">
 					<h2> Maps</h2>
 						<form >
-					  <label for="lon">Map 1: Longatude</label>
+						<table>
+						<tr>
+						<th>
+					  <label for="lon">Map 1: Longitude</label>
 
 					  <input type="text" id="lon" name="lon">
+					  </th>
+					  <th>
 					  <label for="lat">Latitude</label>
-					  <input type="text" id="lat" name="lat"></br>
-					  					  <label for="lon2">Map 2: Longatude</label>
+					  <input type="text" id="lat" name="lat">
+					  </th>
+					  </tr>
+					  <tr>
+						<th>
+					  					  <label for="lon2">Map 2: Longitude</label>
 
 					  					  <input type="text" id="lon2" name="lon2">
+					  					  </th>
+					  <th>
 					  					  <label for="lat2">Latitude</label>
+
 					  <input type="text" id="lat2" name="lat2">
+					  </th>
+					 					  </tr>
+					 					  <tr>
+						<th>
+					    <label for="loc">Map 1: Location</label>
+
+					  					  <input type="text" id="loc" name="loc">
+					  					  </th>
+					  					  <th>
+					  		<label for="loc2">Map 2: Location</label>
+
+					  					  					  <input type="text" id="loc2" name="loc2">
+					  					  					  </th>
+					  					  					  </tr>
+					  					  					  <tr>
+					  					  					  <th>
+					  					  					  <button onclick="GetResultsLatLng()">Go to Locations</button>
+					  					  					  </th>
+					  					  					  </tr>
+					  					  					  </table>
 </form >
-<button onclick="GetResultsLatLng()">Go to Locations</button></br>
+<table>
+<tr>
+<th>
+
 						<div id="map">
 						</div>
+						</th><th>
 						<div id="map2">
 						</div>
+						</th></tr></table>
 						<div class="table">
 						            <table id="map1_table">
 
