@@ -48,6 +48,7 @@ function GetResultsLatLng() {
 
 function ParseResults(data) {
 
+
     var i = 0;
     var x;
     let f;
@@ -73,8 +74,10 @@ function ParseResults(data) {
     for(x in app.reqResults)
         app.country.push(app.reqResults[x].country);
 
+
     for (f = 0; f<app.cityNames.length;f++)
         myCreateFunction(app.cityNames[f], app.country[f], app.coordinates[f], app.locations[f], app.AQ[f])
+    console.log('hi')
 }
 
 function myCreateFunction(city, country, coordinates, locations, values) {
@@ -90,6 +93,7 @@ function myCreateFunction(city, country, coordinates, locations, values) {
     cell3.innerHTML = coordinates;
     cell4.innerHTML = locations;
     cell5.innerHTML = values;
+    console.log('hi')
 }
 
 /******************************
