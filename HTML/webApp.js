@@ -15,12 +15,40 @@ class LatLng {
 function GetResultsLatLng() {
     var date = new Date();
 
+
+    //var prior = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay();
+    console.log(date);
+
+//     Number.prototype.toRad = function() {
+//         return this * Math.PI / 180;
+//     };
+//
+//     var lat2 = mymap.getBounds().getSouthEast().lat;
+//     var lon2 = mymap.getBounds().getSouthEast().lng;
+//     var lat1 = mymap.getBounds().getNorthWest().lat;
+//     var lon1 = mymap.getBounds().getNorthWest().lng;
+//
+//     var R = 6371; // km
+// //has a problem with the .toRad() method below.
+//     var x1 = lat2-lat1;
+//     var dLat = x1.toRad();
+//     var x2 = lon2-lon1;
+//     var dLon = x2.toRad();
+//     var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+//         Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) *
+//         Math.sin(dLon/2) * Math.sin(dLon/2);
+//     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+//     var d = R * c;
+//
+//     var radius = d;
+
     var latlng1 = L.latLng(mymap.getCenter().lat, mymap.getCenter().lng);
-    var latlng2 = L.latLng(mymap.getBounds().getNorthEast().lat, mymap.getBounds().getNorthEast().lng);
+    var latlng2 = L.latLng(mymap.getBounds().getNorth(), mymap.getCenter().lng);
 
     let radius = mymap.distance(latlng1, latlng2);
     let limit = '&limit=10000';
-    let stuff = latest+ mymap.getCenter().lat + ',' + mymap.getCenter().lng +'&'+'radius=' + radius+limit;
+    let prior = '&date_from=2019-3-18';
+    let stuff = latest+ mymap.getCenter().lat + ',' + mymap.getCenter().lng +'&'+'radius=' + radius+limit+prior;
     console.log(stuff);
 
     let request = {
@@ -36,14 +64,37 @@ var app = new Vue ({
     el: '#app',
 
     data: {
-        reqResults: [],
         coordinates: [],
         cities: [],
-        values: [],
         country: [],
-        locations: []
+        locations: [],
+        measurements: []
     }
 });
+
+function CreateHeads() {
+    let table = document.getElementById("map1_table");
+    let city = table.createTHead();
+    let location = table.createTHead();
+    let coord = table.createTHead();
+    let country = table.createTHead();
+    let measurements = table.createTHead();
+    let row1  = city.insertRow(0);
+    let cell1 = city.insertRow(0);
+    cell1.innerHTML= 'City';
+    let row2 = location.insertRow(3);
+    let cell2 = location.insertRow(3);
+    cell2.innerHTML='Location';
+    let row3  = country.insertRow(1);
+    let cell3 = country.insertRow(1);
+    cell3.innerHTML='Country';
+    let row4  = coord.insertRow(2);
+    let cell4 = coord.insertRow(2);
+    cell4.innerHTML = 'Coordinates';
+    let row5  = measurements.insertRow(4);
+    let cell5 = measurements.insertRow(4);
+    cell5.innerHTML='Values';
+}
 
 function ParseResults(data) {
 
@@ -51,35 +102,33 @@ function ParseResults(data) {
     let len = data.results.length;
     // console.log(len)
     for ( var p in data.results)
-        // console.log(p+ ' '+data.results[p].city + ' ' + data.results[p].country);
+
         app.cities.push(data.results[p].city);
-    console.log(app.cities.length)
+    console.log(app.cities.length);
 
-        //console.log('country ' +data.results[p].country);
+    for(var j in data.results)
+        app.coordinates.push(new LatLng(data.results[p].coordinates.latitude, data.results[p].coordinates.longitude).toString());
 
-        // app.cities.push(data.results[p].city);
-        // //console.log(p)
-        // //console.log( data.results[p]+data.results[p].coordinates.latitude )
-        // //var temp = new LatLng(data.results[p].coordinates.latitude, data.resultsp[p].coordinates.longitude).toString();
-        // //app.coordinates.push(temp);
-        //
-        //
-        //
-        // app.locations.push(data.results[p].location);
-        //
-        // for (let x in data.results.measurements)
-        //     var values = data.results[s].measurements[x].value + ' ' +data.results[p].measurements[x].unit;
-        //     app.values.push(values);
-        //
-        // myCreateFunction(
-        //     app.cities[p],
-        //     app.country[p],
-        //     app.coordinates[p],
-        //     app.locations[p],
-        //     app.values[p]
-        // );
-        // // s++;
-        // // console.log(s);
+    console.log(app.coordinates.length);
+
+    for (var k in data.results)
+        for(var r in data.results[k].measurements)
+            app.measurements.push(data.results[k].measurements[r].value);
+
+    console.log(app.measurements.length);
+
+    for(var u in data.results)
+        app.locations.push(data.results[u].location);
+
+    console.log(app.locations.length);
+
+    for(var t in data.results)
+        app.country.push(data.results[t].country);
+    console.log(app.country.length);
+
+    //CreateHeads();
+    for (var y in data.results)
+        myCreateFunction(app.cities[y], app.country[y], app.coordinates[y], app.locations[y], app.measurements[y]);
 }
 
 function myCreateFunction(city, country, coordinates, locations, values) {
