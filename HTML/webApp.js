@@ -6,27 +6,9 @@ class LatLng {
         this.lat = lat.toFixed(3);
         this.lng = lng.toFixed(3);
     }
-    toString() {
-        let string = this.lat + ',' + this.lng;
-        //console.log(string);
-        return string;
-    }
+    toString() { return  'Latitude: ' +this.lat + ',' + 'Longitude: ' + this.lng; }
 }
 
-// set max and min zoom to 16 and 9
-var app = new Vue ({
-
-    el: '#app',
-
-    data: {
-        reqResults: [],
-        coordinates: [],
-        cityNames: [],
-        AQ: [],
-        country: [],
-        locations: []
-    }
-});
 
 function GetResultsLatLng() {
 
@@ -45,40 +27,55 @@ function GetResultsLatLng() {
     };
     $.ajax(request);
 }
+// set max and min zoom to 16 and 9
+var app = new Vue ({
+
+    el: '#app',
+
+    data: {
+        reqResults: [],
+        coordinates: [],
+        cities: [],
+        values: [],
+        country: [],
+        locations: []
+    }
+});
 
 function ParseResults(data) {
 
+    // console.log(data.results,length)
+    let len = data.results.length;
+    // console.log(len)
+    for ( var p in data.results)
+        console.log(data.results[p].city +data.results[p].country)
+        app.cities.push(data.results[p].city);
 
-    var i = 0;
-    var x;
-    let f;
-    for(var k in data)
-        i++;
-        if (i === 1)
-            app.reqResults.push(data[k]);
+        //console.log('country ' +data.results[p].country);
 
-    for (x in app.reqResults)
-        var temp = new LatLng(app.reqResults[x].coordinates.latitude,
-            app.reqResults[x].coordinates.longitude).toString();
-        app.coordinates.push(temp);
-
-    for (x in app.reqResults)
-        app.AQ.push(app.reqResults[x].measurements.value);
-
-    for(x in app.reqResults)
-        app.cityNames.push(app.reqResults[x].city);
-
-    for(x in app.reqResults)
-        app.locations.push(app.reqResults[x].location);
-
-    for(x in app.reqResults)
-        app.country.push(app.reqResults[x].country);
-
-
-    for (f = 0; f<app.cityNames.length;f++)
-        myCreateFunction(app.cityNames[f], app.country[f], app.coordinates[f], app.locations[f], app.AQ[f])
-    console.log('hi')
-    console.log(app.cityNames.length);
+        // app.cities.push(data.results[p].city);
+        // //console.log(p)
+        // //console.log( data.results[p]+data.results[p].coordinates.latitude )
+        // //var temp = new LatLng(data.results[p].coordinates.latitude, data.resultsp[p].coordinates.longitude).toString();
+        // //app.coordinates.push(temp);
+        //
+        //
+        //
+        // app.locations.push(data.results[p].location);
+        //
+        // for (let x in data.results.measurements)
+        //     var values = data.results[s].measurements[x].value + ' ' +data.results[p].measurements[x].unit;
+        //     app.values.push(values);
+        //
+        // myCreateFunction(
+        //     app.cities[p],
+        //     app.country[p],
+        //     app.coordinates[p],
+        //     app.locations[p],
+        //     app.values[p]
+        // );
+        // // s++;
+        // // console.log(s);
 }
 
 function myCreateFunction(city, country, coordinates, locations, values) {
@@ -94,13 +91,12 @@ function myCreateFunction(city, country, coordinates, locations, values) {
     cell3.innerHTML = coordinates;
     cell4.innerHTML = locations;
     cell5.innerHTML = values;
-    console.log('hi')
 }
 
 /******************************
  *      MAP STUFF IS HERE     *
  * ****************************/
-var mymap = L.map('map1').setView([44.9544, -93.0913], 10);
+var mymap = L.map('map1').setView([44.9544, -93.0913], 6);
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     maxZoom: 18,
