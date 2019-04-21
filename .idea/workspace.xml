@@ -17,34 +17,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/HTML/webApp.html">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HTML/webApp.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="146" column="31" selection-start-line="146" selection-start-column="31" selection-end-line="146" selection-end-column="31" />
-              <folding>
-                <element signature="n#!!block;n#CreateHeads#0" />
-                <element signature="e#9#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HTML/webApp.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+            <state relative-caret-position="274">
+              <caret line="313" column="72" lean-forward="true" selection-start-line="313" selection-start-column="72" selection-end-line="313" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -204,11 +182,13 @@
       <workItem from="1555608955026" duration="5441000" />
       <workItem from="1555710687489" duration="187000" />
       <workItem from="1555716954387" duration="1058000" />
+      <workItem from="1555813026138" duration="208000" />
+      <workItem from="1555813283617" duration="63000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75841000" />
+    <option name="totallyTimeSpent" value="74869000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -268,8 +248,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="753">
-          <caret line="250" column="45" lean-forward="true" selection-start-line="250" selection-start-column="45" selection-end-line="250" selection-end-column="45" />
+        <state relative-caret-position="274">
+          <caret line="313" column="72" lean-forward="true" selection-start-line="313" selection-start-column="72" selection-end-line="313" selection-end-column="72" />
         </state>
       </provider>
     </entry>
@@ -296,11 +276,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HTML/webApp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="146" column="31" selection-start-line="146" selection-start-column="31" selection-end-line="146" selection-end-column="31" />
+        <state relative-caret-position="1638">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
           <folding>
             <element signature="n#!!block;n#CreateHeads#0" />
             <element signature="e#9#15#0" expanded="true" />
+            <marker date="1555813340189" expanded="true" signature="1448:1494" ph="..." />
           </folding>
         </state>
       </provider>
