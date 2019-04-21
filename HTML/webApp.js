@@ -96,11 +96,20 @@ function CreateHeads() {
     cell5.innerHTML='Values';
 }
 
+function Empty() {
+    for(var g =0; g < app.cities.length; g++)
+        document.getElementById('map1_table').deleteRow(0);
+    app.cities =[];
+    app.country = [];
+    app.coordinates = [];
+    app.locations = [];
+    app.measurements = [];
+}
 function ParseResults(data) {
 
-    // console.log(data.results,length)
+    Empty();
+
     let len = data.results.length;
-    // console.log(len)
     for ( var p in data.results)
 
         app.cities.push(data.results[p].city);
@@ -113,7 +122,7 @@ function ParseResults(data) {
 
     for (var k in data.results)
         for(var r in data.results[k].measurements)
-            app.measurements.push(data.results[k].measurements[r].value);
+            app.measurements.push(data.results[k].measurements[r].value + data.results[k].measurements[r].unit);
 
     console.log(app.measurements.length);
 
