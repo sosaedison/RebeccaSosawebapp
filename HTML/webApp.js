@@ -1,5 +1,105 @@
 let measurements = 'https://api.openaq.org/v1/measurements';
 let latest = 'https://api.openaq.org/v1/latest?coordinates=';
+let app;
+
+app = new Vue ({
+     el: '#app',
+
+    data: {
+        coordinates: [],
+        cities: [],
+        country: [],
+        locations: [],
+        measurements: [],
+        tableStuff: [],
+        map : null,
+        tileLayer: null,
+        layers: [
+            {
+                id: 0,
+                name: 'Restaurants',
+                active: false,
+                features: [],
+            }
+        ]
+    },
+    mounted() {
+        this.initmap();
+        this.initLayers();
+        this.setUp();
+    },
+    methods: {
+         initmap() {
+             this.map = L.map('map1',{minZoom: 9, maxZoom: 16}).setView([44.9544, -93.0913], 3);
+             this.tileLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                 maxZoom: 18,
+                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                 id: 'mapbox.streets'
+             })
+            this.tileLayer.addTo(this.map);
+         },
+        setUp() {
+            this.map.on('mouseup', this.timeOut());
+            this.map.on('zoomend', this.timeOut());
+        },
+        timeOut(){
+            setTimeout(this.onMove, 2000)
+        },
+        onMove(){
+             this.GetResults();
+        },
+        initLayers() {
+             this.layers.forEach((layer) => {
+                 const markerFeatures = layer.features.filter(feature => feature.type === 'marker');
+                 const polygonFeatures = layer.features.filter(feature => feature.type === 'polygon');
+                 markerFeatures.forEach((feature) => {
+                     feature.leafletObject = L.marker(feature.coords)
+                         .bindPopup(feature.name);
+                 });
+                 polygonFeatures.forEach((feature) => {
+                     feature.leafletObject = L.polygon(feature.coords)
+                         .bindPopup(feature.name);
+                 });
+             });
+
+        },
+        layerChanged(layerid, active){
+            const layer = this.layers.find(layer => layer.id === layerId);
+            layer.features.forEach((feature) => {
+                /* Show or hide the feature depending on the active argument */
+                if (active) {
+                    feature.leafletObject.addTo(this.map);
+                } else {
+                    feature.leafletObject.removeFrom(this.map);
+                }
+            });
+
+        },
+        GetResults() {
+            var latlng1 = L.latLng(this.map.getCenter().lat, this.map.getCenter().lng);
+            var latlng2 = L.latLng(this.map.getBounds().getNorth(), this.map.getCenter().lng);
+
+            let radius = this.map.distance(latlng1, latlng2);
+            let limit = '&limit=10000';
+            let prior = '&date_from=2019-3-18';
+            let stuff = latest+ this.map.getCenter().lat + ',' + this.map.getCenter().lng +'&'+'radius=' + radius+limit+prior;
+            console.log(stuff);
+
+            //$(document).ready()
+            let request = {
+                url: stuff,
+                dataType: "json",
+                success: this.ParseResults()
+            };
+            $.ajax(request);
+        },
+        ParseResults(data) {
+            console.log(data);
+        }
+    }
+});
 
 
 
@@ -12,7 +112,7 @@ class LatLng {
 }
 
 
-function GetResultsLatLng() {
+/*function GetResultsLatLng() {
     var date = new Date();
 
 
@@ -57,20 +157,9 @@ function GetResultsLatLng() {
         success: ParseResults
     };
     $.ajax(request);
-}
+} */
 // set max and min zoom to 16 and 9
-var app = new Vue ({
 
-    el: '#app',
-
-    data: {
-        coordinates: [],
-        cities: [],
-        country: [],
-        locations: [],
-        measurements: []
-    }
-});
 
 function CreateHeads() {
     let table = document.getElementById("map1_table");
@@ -105,40 +194,44 @@ function Empty() {
     app.locations = [];
     app.measurements = [];
 }
-function ParseResults(data) {
 
-    Empty();
+/*function ParseResults(data) {
 
-    let len = data.results.length;
-    for ( var p in data.results)
+    for (var x in data.results)
+        app.tableStuff.push(data.results[x]);
+        console.log(app.tableStuff.length);
+    //Empty();
 
-        app.cities.push(data.results[p].city);
-    console.log(app.cities.length);
-
-    for(var j in data.results)
-        app.coordinates.push(new LatLng(data.results[p].coordinates.latitude, data.results[p].coordinates.longitude).toString());
-
-    console.log(app.coordinates.length);
-
-    for (var k in data.results)
-        for(var r in data.results[k].measurements)
-            app.measurements.push(data.results[k].measurements[r].value + data.results[k].measurements[r].unit);
-
-    console.log(app.measurements.length);
-
-    for(var u in data.results)
-        app.locations.push(data.results[u].location);
-
-    console.log(app.locations.length);
-
-    for(var t in data.results)
-        app.country.push(data.results[t].country);
-    console.log(app.country.length);
+    // let len = data.results.length;
+    // for ( var p in data.results)
+    //
+    //     app.cities.push(data.results[p].city);
+    // console.log(app.cities.length);
+    //
+    // for(var j in data.results)
+    //     app.coordinates.push(new LatLng(data.results[p].coordinates.latitude, data.results[p].coordinates.longitude).toString());
+    //
+    // console.log(app.coordinates.length);
+    //
+    // for (var k in data.results)
+    //     for(var r in data.results[k].measurements)
+    //         app.measurements.push(data.results[k].measurements[r].value + data.results[k].measurements[r].unit);
+    //
+    // console.log(app.measurements.length);
+    //
+    // for(var u in data.results)
+    //     app.locations.push(data.results[u].location);
+    //
+    // console.log(app.locations.length);
+    //
+    // for(var t in data.results)
+    //     app.country.push(data.results[t].country);
+    // console.log(app.country.length);
 
     //CreateHeads();
-    for (var y in data.results)
-        myCreateFunction(app.cities[y], app.country[y], app.coordinates[y], app.locations[y], app.measurements[y]);
-}
+    //for (var y in data.results)
+        //myCreateFunction(app.cities[y], app.country[y], app.coordinates[y], app.locations[y], app.measurements[y]);
+}*/
 
 function myCreateFunction(city, country, coordinates, locations, values) {
     let table = document.getElementById("map1_table");
@@ -158,15 +251,15 @@ function myCreateFunction(city, country, coordinates, locations, values) {
 /******************************
  *      MAP STUFF IS HERE     *
  * ****************************/
-var mymap = L.map('map1').setView([44.9544, -93.0913], 3);
-
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox.streets'
-}).addTo(mymap);
+// var mymap = L.map('map1').setView([44.9544, -93.0913], 3);
+//
+// L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+//     maxZoom: 18,
+//     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+//         '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+//         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+//     id: 'mapbox.streets'
+// }).addTo(mymap);
 
 // var marker = L.marker([51.5, -0.09]).addTo(mymap);
 // var circle = L.circle([51.508, -0.11], {
@@ -191,14 +284,9 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 
 // var popup = L.popup();
 
-function onMove(){
-    GetResultsLatLng();
-}
-function timeOut(){
-    setTimeout(onMove, 2000)
-}
-mymap.on('mouseup', timeOut);
-mymap.on('zoomend', timeOut);
+
+
+
 
 
 

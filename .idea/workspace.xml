@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55392343-45fc-4906-a2ae-d56ac1661e16" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTML/webApp.css" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/webApp.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTML/webApp.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/webApp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTML/webApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/webApp.js" afterDir="false" />
     </list>
@@ -17,12 +17,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HTML/webApp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="313" column="72" lean-forward="true" selection-start-line="313" selection-start-column="72" selection-end-line="313" selection-end-column="72" />
+            <state relative-caret-position="612">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HTML/webApp.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="48" column="10" lean-forward="true" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+              <folding>
+                <element signature="e#9#15#0" expanded="true" />
+                <element signature="e#3494#4997#0" />
+                <element signature="n#!!block;n#CreateHeads#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -55,17 +69,16 @@
         <option value="$PROJECT_DIR$/HTML/Map.js" />
         <option value="$PROJECT_DIR$/HTML/mapCtrl.js" />
         <option value="$PROJECT_DIR$/HTML/require.js" />
-        <option value="$PROJECT_DIR$/HTML/webApp.js" />
-        <option value="$PROJECT_DIR$/HTML/webApp.html" />
         <option value="$PROJECT_DIR$/HTML/webApp.css" />
+        <option value="$PROJECT_DIR$/HTML/webApp.html" />
+        <option value="$PROJECT_DIR$/HTML/webApp.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-189" />
-    <option name="y" value="-20" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="x" value="1100" />
+    <option name="width" value="340" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -75,6 +88,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -97,7 +111,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -184,11 +197,13 @@
       <workItem from="1555716954387" duration="1058000" />
       <workItem from="1555813026138" duration="208000" />
       <workItem from="1555813283617" duration="63000" />
+      <workItem from="1555887552952" duration="5066000" />
+      <workItem from="1555899620340" duration="4730000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74869000" />
+    <option name="totallyTimeSpent" value="84665000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -200,9 +215,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13562092" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18111347" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -215,7 +231,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49834254" weight="0.32911393" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49944752" weight="0.32911393" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005525" side_tool="true" visible="true" weight="0.0815047" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005525" side_tool="true" visible="true" weight="0.08108108" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -246,13 +262,6 @@
     <entry file="file://$PROJECT_DIR$/HTML/mapCtrl.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="313" column="72" lean-forward="true" selection-start-line="313" selection-start-column="72" selection-end-line="313" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -274,18 +283,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HTML/webApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1638">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-          <folding>
-            <element signature="n#!!block;n#CreateHeads#0" />
-            <element signature="e#9#15#0" expanded="true" />
-            <marker date="1555813340189" expanded="true" signature="1448:1494" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HTML/webApp.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -293,10 +290,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5267">
+          <caret line="301" column="10" selection-start-line="301" selection-start-column="10" selection-end-line="301" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HTML/webApp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="612">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HTML/webApp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="48" column="10" lean-forward="true" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+          <folding>
+            <element signature="e#9#15#0" expanded="true" />
+            <element signature="e#3494#4997#0" />
+            <element signature="n#!!block;n#CreateHeads#0" />
+          </folding>
         </state>
       </provider>
     </entry>
