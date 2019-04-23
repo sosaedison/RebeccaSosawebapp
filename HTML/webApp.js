@@ -1,5 +1,6 @@
-let measurements = 'https://api.openaq.org/v1/measurements';
-let latest = 'https://api.openaq.org/v1/latest?coordinates=';
+let latest = 'https://api.openaq.org/v1/measurements?coordinates=';
+var avg=0;
+
 
 
 
@@ -65,82 +66,71 @@ var app = new Vue ({
 
     data: {
         coordinates: [],
-        cities: [],
-        country: [],
         locations: [],
-        measurements: []
+        tableStuff: [],
+        seenLocations: [],
+        dataStuff: [],
+        seenUnits: [],
+        avgData: []
     }
 });
+function Clear() {
+    var table = document.getElementById("map1_table");
+    for (var d in app.locations)
+        table.deleteRow(0);
 
-function CreateHeads() {
-    let table = document.getElementById("map1_table");
-    let city = table.createTHead();
-    let location = table.createTHead();
-    let coord = table.createTHead();
-    let country = table.createTHead();
-    let measurements = table.createTHead();
-    let row1  = city.insertRow(0);
-    let cell1 = city.insertRow(0);
-    cell1.innerHTML= 'City';
-    let row2 = location.insertRow(3);
-    let cell2 = location.insertRow(3);
-    cell2.innerHTML='Location';
-    let row3  = country.insertRow(1);
-    let cell3 = country.insertRow(1);
-    cell3.innerHTML='Country';
-    let row4  = coord.insertRow(2);
-    let cell4 = coord.insertRow(2);
-    cell4.innerHTML = 'Coordinates';
-    let row5  = measurements.insertRow(4);
-    let cell5 = measurements.insertRow(4);
-    cell5.innerHTML='Values';
-}
-
-function Empty() {
-    for(var g =0; g < app.cities.length; g++)
-        document.getElementById('map1_table').deleteRow(0);
-    app.cities =[];
-    app.country = [];
-    app.coordinates = [];
     app.locations = [];
-    app.measurements = [];
 }
 function ParseResults(data) {
 
-    Empty();
+    Clear();
+    for(var p in data.results)
+        app.locations.push(data.results[p].location);
 
-    let len = data.results.length;
-    for ( var p in data.results)
+    for(var d in data.results)
+        if(!app.seenUnits.includes(data.results[d].unit))
+            app.seenUnits.push(data.results[d].unit);
 
-        app.cities.push(data.results[p].city);
-    console.log(app.cities.length);
+    for(var f in data.results)
+        var b = {location: data.results[f].location, value: data.results[f].value, unit: data.results[f].unit};
+        app.dataStuff.push(b);
 
-    for(var j in data.results)
-        app.coordinates.push(new LatLng(data.results[p].coordinates.latitude, data.results[p].coordinates.longitude).toString());
 
-    console.log(app.coordinates.length);
-
-    for (var k in data.results)
-        for(var r in data.results[k].measurements)
-            app.measurements.push(data.results[k].measurements[r].value + data.results[k].measurements[r].unit);
-
-    console.log(app.measurements.length);
-
-    for(var u in data.results)
-        app.locations.push(data.results[u].location);
-
-    console.log(app.locations.length);
+    for (var y in data.results)
+        makeTable(
+            data.results[y].city,
+            data.results[y].country,
+            new LatLng(data.results[y].coordinates.latitude, data.results[y].coordinates.longitude).toString(),
+            data.results[y].location,
+            data.results[y].value + ' ' + data.results[y].unit
+        );
 
     for(var t in data.results)
-        app.country.push(data.results[t].country);
-    console.log(app.country.length);
+        if(!seenLocation(app.locations[t]))
+            makeMarkers(L.latLng(data.results[t].coordinates.latitude,
+                data.results[t].coordinates.longitude));
 
-    //CreateHeads();
-    for (var y in data.results)
-        myCreateFunction(app.cities[y], app.country[y], app.coordinates[y], app.locations[y], app.measurements[y]);
+    for (var r in app.seenLocations)
+        avg = 0;
+        var loc =app.seenLocations[r];
+        for(var a in app.seenUnits)
+            var uni = app.seenUnits[a]
+                for(var g in app.dataStuff)
+                    var count = 0;
+                    if(app.dataStuff[g].location === loc && app.dataStuff[g].unit === uni)
+                        avg += app.dataStuff[g].value;
 }
-
-function myCreateFunction(city, country, coordinates, locations, values) {
+function seenLocation(location) {
+    if (app.seenLocations.includes(location))
+        return 1;
+    app.seenLocations.push(location);
+    return 0
+}
+function makeMarkers(coord) {
+    var temp = L.marker(coord);
+    temp.bindPopup("")
+}
+function makeTable(city, country, coordinates, locations, values) {
     let table = document.getElementById("map1_table");
     let row = table.insertRow(0);
     let cell1 = row.insertCell(0);
@@ -149,8 +139,8 @@ function myCreateFunction(city, country, coordinates, locations, values) {
     let cell4 = row.insertCell(3);
     let cell5 = row.insertCell(4);
     cell1.innerHTML = city;
-    cell2.innerHTML = country;
-    cell3.innerHTML = coordinates;
+    cell2.innerHTML = coordinates;
+    cell3.innerHTML = country;
     cell4.innerHTML = locations;
     cell5.innerHTML = values;
 }
@@ -158,7 +148,7 @@ function myCreateFunction(city, country, coordinates, locations, values) {
 /******************************
  *      MAP STUFF IS HERE     *
  * ****************************/
-var mymap = L.map('map1').setView([44.9544, -93.0913], 3);
+var mymap = L.map('map1',{maxZoom: 16, minZoom: 9}).setView([44.9544, -93.0913], 3);
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     maxZoom: 18,
