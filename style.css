@@ -48,6 +48,12 @@ html {
 		width:17rem;
 		float:left;
 	}
+		#index
+	{
+		height:40rem;
+		width:27rem;
+		float:left;
+	}
 
 	#header
 	{
@@ -159,3 +165,13 @@ padding-top:2rem;
 color: #F1F1F1;
 background-color:rgb(102, 102, 102);
 }
+ 
+ .darkblue{background-color: rgb(11, 117, 169);}
+ .teal{background-color: rgb(33, 181, 187);}
+ .red{background-color: rgb(217, 49, 39);}
+ .midblue{background-color: rgb(143, 212, 217);}
+ .lightblue{background-color: rgb(191, 230, 236);}
+ .almostwhite{background-color: rgb(227, 240, 217);}
+ .yellow{background-color: rgb(246, 225, 158);}
+ .lightorange{background-color: rgb(250, 173, 91);}
+ .orange{background-color: rgb(243, 109, 60);}
