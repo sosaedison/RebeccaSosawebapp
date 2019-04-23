@@ -12,22 +12,21 @@
             crossorigin="">
     </script>
 
+
 </head>
 <body>
 
     <div id="app">
-        <label>
-            Longitude: <input type="text">
-        </label>
+        Longitude: <input type="text" v-model="lng">
         <br>
-        <label>
-            Latitude: <input type="text">
-        </label><br>
+        Latitude: <input type="text" v-model="lat">
+        <br>
         <button type="button" onclick="GetResultsLatLng()">Enter</button>
         <div id="map1">
 
         </div>
         <div class="table">
+
             <table id="map1_table">
 
             </table>
@@ -39,10 +38,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="webApp.js"></script>
-
-
-
-
 
 </body>
 </html>
