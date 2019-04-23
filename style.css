@@ -166,12 +166,10 @@ color: #F1F1F1;
 background-color:rgb(102, 102, 102);
 }
  
- .darkblue{background-color: rgb(11, 117, 169);}
- .teal{background-color: rgb(33, 181, 187);}
- .red{background-color: rgb(217, 49, 39);}
- .midblue{background-color: rgb(143, 212, 217);}
- .lightblue{background-color: rgb(191, 230, 236);}
- .almostwhite{background-color: rgb(227, 240, 217);}
- .yellow{background-color: rgb(246, 225, 158);}
- .lightorange{background-color: rgb(250, 173, 91);}
- .orange{background-color: rgb(243, 109, 60);}
+ .green{background-color: rgb(0, 228, 0);}
+ .yellow{background-color: rgb(255, 255, 0);}
+ .red{background-color: rgb(255, 0, 0);}
+ .orange{background-color: rgb(255, 126, 0);}
+ .purple{background-color: rgb(143, 63, 151);}
+ .maroon{background-color: rgb(126, 0, 35);}
+
