@@ -15,13 +15,14 @@ Populate a table for each map with air quality measurements (from the Open AQ Pl
 Table should automatically update data based on location shown in map
 It is OK to display all results in the table even though the circle of retrieved data will not exactly match the rectangular map
 Table should show all measurements, not just the averages
+Draw markers on the map for each location their is at least one measurement
 "About the Project" page
 Description of the tools (frameworks, APIs, etc.) you used to create the application
 Use the Nominatim API (https://wiki.openstreetmap.org/wiki/Nominatim (Links to an external site.)Links to an external site.) to search via place name in addition to lat/long coordinates
 
 Need to do:
 Input box text should update with new location (lat/long coordinates) when map is panned
-Draw markers on the map for each location their is at least one measurement
+
 Short bio about each team member (including a photo)
 Video demo of the application (2 - 4 minutes)
 Can natively embed or upload to YouTube and embed
