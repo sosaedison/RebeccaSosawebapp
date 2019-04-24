@@ -267,7 +267,7 @@ GetJSON(url3, function(data) {
         row.insertCell().innerHTML = data.results[i].parameter;
         row.insertCell().innerHTML = data.results[i].unit;       
         row.insertCell().innerHTML = data.results[i].value;
-                  if(data.results[i].parameter==='pm25')
+                if(data.results[i].parameter==='pm25')
         {
             if(data.results[i].value<12.1)
             {
@@ -280,24 +280,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=250.5)
             {
                 row.className = "maroon";
-                document.getElementById("p1").innerHTML = "High pm 2.5 values: People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
             }
              if(data.results[i].value>=35.5 &&data.results[i].value<55.5)
             {
                 row.className = "orange";
-                document.getElementById("p1").innerHTML = "High pm 2.5 values: People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
-          
             }
              if(data.results[i].value>=55.5 &&data.results[i].value<150.5)
             {
                 row.className = "red";
-               document.getElementById("p1").innerHTML = "High pm 2.5 values: People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
-     
             } if(data.results[i].value>=150.5 &&data.results[i].value<250.5)
             {
                 row.className = "purple";
-               document.getElementById("p1").innerHTML = "High pm 2.5 values: People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
-
             } 
         }
                if(data.results[i].parameter==="pm10")
@@ -313,21 +306,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=425)
             {
                 row.className = "maroon";
-                       document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High pm10 values :People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
             }
              if(data.results[i].value>=155 &&data.results[i].value<255)
             {
                 row.className = "orange";
-                   document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High pm10 values :People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
             }
              if(data.results[i].value>=255 &&data.results[i].value<355)
             {
                 row.className = "red";
-                  document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High pm10 values :People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
             } if(data.results[i].value>=355 &&data.results[i].value<425)
             {
                 row.className = "purple";
-                  document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High pm10 values :People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
             } 
         }
                if(data.results[i].parameter==="co")
@@ -343,22 +332,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=30.5)
             {
                 row.className = "maroon";
-                    document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High co values : People with heart disease is the group most at risk";
-        
             }
              if(data.results[i].value>=9.5 &&data.results[i].value<12.5)
             {
                 row.className = "orange";
-                document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High co values : People with heart disease is the group most at risk";
             }
              if(data.results[i].value>=12.5 &&data.results[i].value<15.5)
             {
                 row.className = "red";
-                  document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High co values : People with heart disease is the group most at risk";
             } if(data.results[i].value>=15.5 &&data.results[i].value<30.5)
             {
                 row.className = "purple";
-                 document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High co values : People with heart disease is the group most at risk";
             } 
         }
                if(data.results[i].parameter==="so2")
@@ -374,21 +358,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=605)
             {
                 row.className = "maroon";
-                     document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High so2 values :People with asthma, children, and older adults are the groups most at risk";
             }
              if(data.results[i].value>=76 &&data.results[i].value<186)
             {
                 row.className = "orange";
-                  document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High so2 values :People with asthma, children, and older adults are the groups most at risk";
             }
              if(data.results[i].value>=186 &&data.results[i].value<305)
             {
                 row.className = "red";
-               document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High so2 values :People with asthma, children, and older adults are the groups most at risk";
             } if(data.results[i].value>=305 &&data.results[i].value<605)
             {
                 row.className = "purple";
-                 document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High so2 values :People with asthma, children, and older adults are the groups most at risk";
             } 
         }
                if(data.results[i].parameter==="no2")
@@ -404,21 +384,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=1250)
             {
                 row.className = "maroon";
-               document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High no2 values :People with asthma, children, and older adults are the groups most at risk";
             }
              if(data.results[i].value>=101 &&data.results[i].value<361)
             {
                 row.className = "orange";
-              document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High no2 values :People with asthma, children, and older adults are the groups most at risk";
             }
              if(data.results[i].value>=361 &&data.results[i].value<650)
             {
                 row.className = "red";
-             document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High no2 values :People with asthma, children, and older adults are the groups most at risk";
             } if(data.results[i].value>=650 &&data.results[i].value<1250)
             {
-                row.className = "purple";        
-                 document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High no2 values :People with asthma, children, and older adults are the groups most at risk";
+                row.className = "purple";
             } 
         }
          if(data.results[i].parameter==="o3")
@@ -434,25 +410,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=.2)
             {
                 row.className = "maroon";
-                 document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High o3 values :People with lung disease, children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients are the groups most at risk";
-          
             }
              if(data.results[i].value>=.071 &&data.results[i].value<.086)
             {
                 row.className = "orange";
-                document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High o3 values :People with lung disease, children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients are the groups most at risk";
-          
             }
              if(data.results[i].value>=.086 &&data.results[i].value<.106)
             {
                 row.className = "red";
-              document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High o3 values :People with lung disease, children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients are the groups most at risk";
-          
             } if(data.results[i].value>=.106 &&data.results[i].value<.2)
             {
                 row.className = "purple";
-               document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High o3 values :People with lung disease, children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients are the groups most at risk";
-          
             } 
         }
     }
@@ -617,7 +585,7 @@ GetJSON(url3, function(data) {
         row.insertCell().innerHTML = data.results[i].parameter;
         row.insertCell().innerHTML = data.results[i].unit;       
         row.insertCell().innerHTML = data.results[i].value;
-                 if(data.results[i].parameter==='pm25')
+                if(data.results[i].parameter==='pm25')
         {
             if(data.results[i].value<12.1)
             {
@@ -630,24 +598,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=250.5)
             {
                 row.className = "maroon";
-                document.getElementById("p2").innerHTML = "High pm 2.5 values: People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
             }
              if(data.results[i].value>=35.5 &&data.results[i].value<55.5)
             {
                 row.className = "orange";
-                document.getElementById("p2").innerHTML = "High pm 2.5 values: People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
-          
             }
              if(data.results[i].value>=55.5 &&data.results[i].value<150.5)
             {
                 row.className = "red";
-               document.getElementById("p2").innerHTML = "High pm 2.5 values: People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
-     
             } if(data.results[i].value>=150.5 &&data.results[i].value<250.5)
             {
                 row.className = "purple";
-               document.getElementById("p2").innerHTML = "High pm 2.5 values: People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
-
             } 
         }
                if(data.results[i].parameter==="pm10")
@@ -663,21 +624,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=425)
             {
                 row.className = "maroon";
-                       document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High pm10 values :People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk");
             }
              if(data.results[i].value>=155 &&data.results[i].value<255)
             {
                 row.className = "orange";
-                   document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High pm10 values :People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
             }
              if(data.results[i].value>=255 &&data.results[i].value<355)
             {
                 row.className = "red";
-                  document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High pm10 values :People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
             } if(data.results[i].value>=355 &&data.results[i].value<425)
             {
                 row.className = "purple";
-                  document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High pm10 values :People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
             } 
         }
                if(data.results[i].parameter==="co")
@@ -693,22 +650,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=30.5)
             {
                 row.className = "maroon";
-                    document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High co values : People with heart disease is the group most at risk";
-        
             }
              if(data.results[i].value>=9.5 &&data.results[i].value<12.5)
             {
                 row.className = "orange";
-                document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High co values : People with heart disease is the group most at risk";
             }
              if(data.results[i].value>=12.5 &&data.results[i].value<15.5)
             {
                 row.className = "red";
-                  document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High co values : People with heart disease is the group most at risk";
             } if(data.results[i].value>=15.5 &&data.results[i].value<30.5)
             {
                 row.className = "purple";
-                 document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High co values : People with heart disease is the group most at risk";
             } 
         }
                if(data.results[i].parameter==="so2")
@@ -724,21 +676,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=605)
             {
                 row.className = "maroon";
-                     document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High so2 values :People with asthma, children, and older adults are the groups most at risk";
             }
              if(data.results[i].value>=76 &&data.results[i].value<186)
             {
                 row.className = "orange";
-                  document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High so2 values :People with asthma, children, and older adults are the groups most at risk";
             }
              if(data.results[i].value>=186 &&data.results[i].value<305)
             {
                 row.className = "red";
-               document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High so2 values :People with asthma, children, and older adults are the groups most at risk";
             } if(data.results[i].value>=305 &&data.results[i].value<605)
             {
                 row.className = "purple";
-                 document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High so2 values :People with asthma, children, and older adults are the groups most at risk";
             } 
         }
                if(data.results[i].parameter==="no2")
@@ -754,21 +702,17 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=1250)
             {
                 row.className = "maroon";
-               document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High no2 values :People with asthma, children, and older adults are the groups most at risk";
             }
              if(data.results[i].value>=101 &&data.results[i].value<361)
             {
                 row.className = "orange";
-              document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High no2 values :People with asthma, children, and older adults are the groups most at risk";
             }
              if(data.results[i].value>=361 &&data.results[i].value<650)
             {
                 row.className = "red";
-             document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High no2 values :People with asthma, children, and older adults are the groups most at risk";
             } if(data.results[i].value>=650 &&data.results[i].value<1250)
             {
-                row.className = "purple";        
-                 document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High no2 values :People with asthma, children, and older adults are the groups most at risk";
+                row.className = "purple";
             } 
         }
          if(data.results[i].parameter==="o3")
@@ -784,27 +728,19 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=.2)
             {
                 row.className = "maroon";
-                 document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High o3 values :People with lung disease, children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients are the groups most at risk";
-          
             }
              if(data.results[i].value>=.071 &&data.results[i].value<.086)
             {
                 row.className = "orange";
-                document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High o3 values :People with lung disease, children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients are the groups most at risk";
-          
             }
              if(data.results[i].value>=.086 &&data.results[i].value<.106)
             {
                 row.className = "red";
-              document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High o3 values :People with lung disease, children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients are the groups most at risk";
-          
             } if(data.results[i].value>=.106 &&data.results[i].value<.2)
             {
                 row.className = "purple";
-               document.getElementById("p2").innerHTML =document.getElementById("p1").innerHTML+ "</br> High o3 values :People with lung disease, children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients are the groups most at risk";
-          
             } 
-        }
+        }  
     } 
 })},2000);
 
