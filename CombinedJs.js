@@ -313,7 +313,7 @@ GetJSON(url3, function(data) {
              if(data.results[i].value>=425)
             {
                 row.className = "maroon";
-                       document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High pm10 values :People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk");
+                       document.getElementById("p1").innerHTML =document.getElementById("p1").innerHTML+ "</br> High pm10 values :People with heart or lung disease, older adults, children, and people of lower socioeconomic status are the groups most at risk";
             }
              if(data.results[i].value>=155 &&data.results[i].value<255)
             {
