@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 	<html>
-	<script type="text/javascript" src="vue.js"></script>
 
 		<head>
 			<link rel="stylesheet" href="style.css">
@@ -32,50 +31,39 @@
 				</div>
 				<div id="maps">
 					<h2> Maps</h2>
-						<form >
 						<table>
 						<tr>
 						<th>
-					  <label for="lon">Map 1: Longitude</label>
-
-					  <input type="text" id="lon" name="lon">
+					  Map 1 Latitude: <input type="text" name="lat" id="lat"/>
 					  </th>
 					  <th>
-					  <label for="lat">Latitude</label>
-					  <input type="text" id="lat" name="lat">
+					  Longitude: <input type="text" name="lon" id="lon"/>
 					  </th>
 					  </tr>
+					</br>
 					  <tr>
 						<th>
-					  					  <label for="lon2">Map 2: Longitude</label>
-
-					  					  <input type="text" id="lon2" name="lon2">
-					  					  </th>
-					  <th>
-					  					  <label for="lat2">Latitude</label>
-
-					  <input type="text" id="lat2" name="lat2">
+					  Map 2 Latitude: <input type="text" name="lat2" id="lat2"/>
 					  </th>
-					 					  </tr>
-					 					  <tr>
+					  <th>
+					  Longitude: <input type="text" name="lon2" id="lon2"/>
+					  </th>
+					  </tr>
+					</br>
+								  <tr>
 						<th>
-					    <label for="loc">Map 1: Location</label>
-
-					  					  <input type="text" id="loc" name="loc">
+					 Map 1: Location: <input type="text" name="loc" id="loc"/>
 					  					  </th>
 					  					  <th>
-					  		<label for="loc2">Map 2: Location</label>
-
-					  					  					  <input type="text" id="loc2" name="loc2">
+					  		Map 2: Location: <input type="text" name="loc2" id="loc2"/>
 					  					  					  </th>
 					  					  					  </tr>
 					  					  					  <tr>
 					  					  					  <th>
 					  					  					  <button onclick="GetResultsLatLng()">Go to Locations</button>
 					  					  					  </th>
-					  					  					  </tr>
+					  					  					  </tr> 
 					  					  					  </table>
-</form >
 <table>
 <tr>
 <th>
@@ -101,8 +89,8 @@
             	</p>
 	</div>
 <script type="text/javascript" src="js.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+ <!--   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
     <script type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		</body>
 	</html>
