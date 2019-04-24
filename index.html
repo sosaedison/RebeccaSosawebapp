@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+	<html>
+
+		<head>
+			<link rel="stylesheet" href="style.css">
+			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+				  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="crossorigin=""/>
+   			<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+  		    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="  crossorigin=""></script>
+			<title> Air Quality Web App </title>
+		</head>
+		<body>
+			<div id="header">
+				<img src="AQ.jpg" alt="AQ in the Sky"/>
+				<h1> Air Quality Web App</h1>
+				<ul>
+					<li><a href="">Home</a></li>
+				  	<li><a href="">About the Project</a></li>
+				</ul>
+			</div>
+			<div id="bodytext">
+				<div id="backStory">
+					<img src="Rosemount.jpg" alt="Rosemount, Mn Oil Refinery"/>
+					<h2> Air Quality</h2>
+					<p>
+		For this project, we created a single page application about air quality. To do so, we used 2 external APIs, Leaflet and the Open AQ Platform, to
+		make an interactive page to allow a user to investigate air quality from all over the world.
+		This project also incorporates Vue JS as a framework to make building the app simpler.
+		There is also a second page "About the Project", which will document our team, our development process, and demo the final application with some interesting findings.
+					</p>
+				</div>
+				<div id="maps">
+					<h2> Maps</h2>
+						<table>
+						<tr>
+						<th>
+					  Map 1 Latitude: <input type="text" name="lat" id="lat"/>
+					  </th>
+					  <th>
+					  Longitude: <input type="text" name="lon" id="lon"/>
+					  </th>
+					  </tr>
+					</br>
+					  <tr>
+						<th>
+					  Map 2 Latitude: <input type="text" name="lat2" id="lat2"/>
+					  </th>
+					  <th>
+					  Longitude: <input type="text" name="lon2" id="lon2"/>
+					  </th>
+					  </tr>
+					</br>
+								  <tr>
+						<th>
+					 Map 1: Location: <input type="text" name="loc" id="loc"/>
+					  					  </th>
+					  					  <th>
+					  		Map 2: Location: <input type="text" name="loc2" id="loc2"/>
+					  					  					  </th>
+					  					  					  </tr>
+					  					  					  <tr>
+					  					  					  <th>
+					  					  					  <button onclick="GetResultsLatLng()">Go to Locations</button>
+					  					  					  </th>
+					  					  					  </tr> 
+					  					  					  </table>
+<table>
+<tr>
+<th>
+
+						<div id="map">
+						</div>
+						</th><th>
+						<div id="map2">
+						</div>
+						</th></tr></table>
+						<div class="table">
+						            <table id="map1_table">
+
+						            </table>
+        </div>
+        <p>
+        </p>
+	</div>
+				 <div id="footer">
+            <p>
+            <a href="https://leafletjs.com/" > Powered by Leaflet </a></br>
+            	<a href="https://docs.openaq.org/#api-_" > Powered by Open AQ Platform </a>
+            	</p>
+	</div>
+<script type="text/javascript" src="js.js"></script>
+ <!--   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		</body>
+	</html>
