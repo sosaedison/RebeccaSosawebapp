@@ -46,8 +46,8 @@ console.log(prior);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
     console.log(radius);
-var url3=  "https://api.openaq.org/v1/measurements?coordinates="+Mymap.getCenter().lat+","+ Mymap.getCenter().lng+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date;
-var url4=  "https://api.openaq.org/v1/measurements?coordinates="+Mymap2.getCenter().lat+","+ Mymap2.getCenter().lng+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date;
+var url3=  "https://api.openaq.org/v1/measurements?coordinates="+Mymap.getCenter().lat+","+ Mymap.getCenter().lng+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
+var url4=  "https://api.openaq.org/v1/measurements?coordinates="+Mymap2.getCenter().lat+","+ Mymap2.getCenter().lng+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
     GetJSON(url3, function(data) {
         data2 = data;
      for (var i = 0; i < data2.length; i++) {
@@ -98,6 +98,14 @@ var loncent2=Mymap2.getCenter().lng;
     let radius2 = Mymap.distance(latlng3, latlng4);
 var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
 var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
+document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
 GetJSON(url3, function(data) {
     
    $("#table1 tr").remove(); 
@@ -112,6 +120,7 @@ GetJSON(url3, function(data) {
         row.insertCell().innerHTML = "parameter";
         row.insertCell().innerHTML = "unit";       
         row.insertCell().innerHTML = "value";
+        
     for(i in data.results){ 
     table = document.getElementById('table1');    
         row = table.insertRow();
@@ -467,7 +476,6 @@ GetJSON(url3, function(data) {
     } 
 })},2000);
 
-
 function GetResultsLatLng() {
      var lat = document.getElementById("lat").value;
     var lon = document.getElementById("lon").value;
@@ -539,6 +547,14 @@ var loncent2=Mymap2.getCenter().lng;
         var latlng3 = L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
+    document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
 var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
 var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
 GetJSON(url3, function(data) {
@@ -930,6 +946,14 @@ var loncent2=Mymap2.getCenter().lng;
         var latlng3 = L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
+    document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
 var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
 var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
 GetJSON(url3, function(data) {
@@ -1131,6 +1155,14 @@ var loncent2=Mymap2.getCenter().lng;
         var latlng3 = L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
+    document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
 var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
 var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
 GetJSON(url3, function(data) {
@@ -1332,6 +1364,14 @@ var loncent2=Mymap2.getCenter().lng;
         var latlng3 = L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
+    document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
 var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
 var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
    
@@ -1542,6 +1582,14 @@ var loncent2=Mymap2.getCenter().lng;
         var latlng3 = L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
+    document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
 var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
 var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
    
@@ -1595,6 +1643,7 @@ var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ l
              if(data.results[i].value>=35.5 &&data.results[i].value<55.5)
             {
                 row.className = "orange";
+
             }
              if(data.results[i].value>=55.5 &&data.results[i].value<150.5)
             {

@@ -20,8 +20,8 @@
                 <img src="AQ.jpg" alt="AQ in the Sky"/>
                 <h1> Air Quality Web App</h1>
                 <ul>
-                   <button class="button"><a href="https://sosaedison.github.io/sosaedison.github.io/CombinationWebapp.html">Home</a></button>
-                    <button class="button"><a href="https://sosaedison.github.io/sosaedison.github.io/About.html">About the Project</a></button>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About the Project</a></li>
                 </ul>
             </div>
             <div id="bodytext">
@@ -40,28 +40,28 @@
                         <table>
                         <tr>
                         <th>
-                      Map 1 Latitude: <input type="text" name="lat" id="lat"/>
+                      Map 1 Latitude: <input type="text" name="lat" id="lat" placeholder="44.01932"/>
                       </th>
                       <th>
-                      Longitude: <input type="text" name="lon" id="lon"/>
+                      Longitude: <input type="text" name="lon" id="lon" placeholder="-92.45942"/>
                       </th>
                       </tr>
                     </br>
                       <tr>
                         <th>
-                      Map 2 Latitude: <input type="text" name="lat2" id="lat2"/>
+                      Map 2 Latitude: <input type="text" name="lat2" id="lat2" placeholder="44.01932"/>
                       </th>
                       <th>
-                      Longitude: <input type="text" name="lon2" id="lon2"/>
+                      Longitude: <input type="text" name="lon2" id="lon2" placeholder="-92.45942"/>
                       </th>
                       </tr>
                     </br>
                                   <tr>
                         <th>
-                     Map 1: Location: <input type="text" name="loc" id="loc"/>
+                     Map 1: Location: <input type="text" name="loc" id="loc" placeholder="Rochester,Mn"/>
                                           </th>
                                           <th>
-                            Map 2: Location: <input type="text" name="loc2" id="loc2"/>
+                            Map 2: Location: <input type="text" name="loc2" id="loc2" placeholder="Rochester,Mn"/>
                                                               </th>
                                                               </tr>
                                                               <tr>
@@ -80,6 +80,12 @@
                         <div id="map2">
                         </div>
                         </th></tr></table>
+                        <button type="button" 
+onclick="document.getElementById('map').style.width = '100rem',document.getElementById('map').style.height = '100rem' ">
+Map 1 Fullsize</button>
+  <button type="button" 
+onclick="document.getElementById('map2').style.width = '100%'">
+Map 2 Fullsize</button>
                         <img src="index.jpg" alt="Index of AQ" id="index"/>
                         <div class="table">
 <p> Map 1:
