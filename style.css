@@ -27,6 +27,15 @@ html {
 		width:85rem;
 		table:hover{font-style: italic; color:FF1A1A;text-decoration: none;background-color:rgb(10,10,10);};
 	}
+#header
+	{
+		background-image: linear-gradient(to bottom right,rgb(0, 0, 0),rgb(105, 23, 94));
+		position:fixed;
+		width: 100%;
+		height:12rem;
+		text-align: left;
+		color: rgb(255,255,255);
+	}
 
 	body img
 	{
@@ -41,16 +50,7 @@ html {
 		float:left;
 	}
 
-	#header
-	{
-		background-image: linear-gradient(to bottom right,rgb(0, 0, 0),rgb(105, 23, 94));
-		position:fixed;
-		width: 100%;
-		height:12rem;
-		text-align: left;
-		color: rgb(255,255,255);
-	}
-
+	
 	#header img 
 	{ 
 		float: left; 
