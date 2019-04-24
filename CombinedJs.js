@@ -1789,3 +1789,56 @@ var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ l
     
 })
 },4000);});
+function map1FullScreen(){
+    var Mymap= document.getElementById("map");
+    if(Mymap.requestFullscreen)
+        Mymap.requestFullscreen();
+    else if(Mymap.mozRequestFullscreen)
+        Mymap.mozRequestFullscreen();
+    else if(Mymap.webkitRequestFullscreen)
+        Mymap.webkitRequestFullscreen();
+    else if(Mymap.msRequestFullscreen)
+        Mymap.msRequestFullscreen();
+    else
+        console.log("foobar");
+}
+function closeFullScreen1(){
+    var Mymap= document.getElementById("map");
+    if(Mymap.exitFullscreen)
+        Mymap.exitFullscreen();
+    else if(Mymap.mozCancelFullscreen)
+        Mymap.mozCancelFullscreen();
+    else if(Mymap.webkitExitFullscreen)
+        Mymap.webkitExitFullscreen();
+    else if(Mymap.msExitFullscreen)
+        Mymap.msExitFullscreen();
+    else
+        console.log("foobar");
+}
+function map2FullScreen(){
+    var Mymap= document.getElementById("map2");
+    if(Mymap.requestFullscreen)
+        Mymap.requestFullscreen();
+    else if(Mymap.mozRequestFullscreen)
+        Mymap.mozRequestFullscreen();
+    else if(Mymap.webkitRequestFullscreen)
+        Mymap.webkitRequestFullscreen();
+    else if(Mymap.msRequestFullscreen)
+        Mymap.msRequestFullscreen();
+    else
+        console.log("foobar");
+}
+function closeFullScreen2(){
+    var Mymap= document.getElementById("map2");
+    if(Mymap.exitFullscreen)
+        Mymap.exitFullscreen();
+    else if(Mymap.mozCancelFullscreen)
+        Mymap.mozCancelFullscreen();
+    else if(Mymap.webkitExitFullscreen)
+        Mymap.webkitExitFullscreen();
+    else if(Mymap.msExitFullscreen)
+        Mymap.msExitFullscreen();
+    else
+        console.log("foobar");
+}
+
