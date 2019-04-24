@@ -163,14 +163,14 @@ table, td {
  }
 #table1{
 	overflow-y: scroll;
-	height: 20rem;
+	height: 10rem;
 	width: 60rem;
 	display: block;
 	float: right;
 }
 #table2{
 	overflow-y: scroll;
-	height: 20rem;
+	height: 10rem;
 	width: 60rem;
 	display: block;
 	float: right;
