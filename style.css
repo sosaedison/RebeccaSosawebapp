@@ -62,7 +62,7 @@ html {
 	#bodytext
 	{
 		background-color : rgb(255, 218, 254);
-		padding-top :10.5rem;
+		padding-top :12.5rem;
 		vertical-align: center;
 		width: auto;
 		font-size: 1.25rem;
@@ -129,8 +129,6 @@ table p{
 #map{
 width:20rem;
 height: 20rem;
-
-
 float:left;
 padding:5rem;
 outline: none;
@@ -147,7 +145,7 @@ outline: none;
 
 #footer
 {
-padding-top:2rem;
+padding-top:12rem;
 color: #F1F1F1;
 background-color:rgb(102, 102, 102);
 }
