@@ -163,13 +163,17 @@ table, td {
  }
 #table1{
 	overflow-y: scroll;
-	height: 200px;
+	height: 30rem;
+	width: 70rem;
 	display: block;
+	float: right;
 }
 #table2{
 	overflow-y: scroll;
-	height: 200px;
+	height: 30rem;
+	width: 70rem;
 	display: block;
+	float: right;
 }
 .no-js #loader { display: none;  }
 .js #loader { display: block; position: absolute; left: 100px; top: 0; }
