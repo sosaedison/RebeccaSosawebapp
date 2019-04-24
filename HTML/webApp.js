@@ -3,26 +3,6 @@ let latest = 'https://api.openaq.org/v1/measurements?coordinates=';
 var avg=0;
 
 let measurements = 'https://api.openaq.org/v1/measurements';
-let latest = 'https://api.openaq.org/v1/latest?coordinates=';
-let app;
-
-let app = new Vue ({
-     el: '#app',
-
-    data: {
-        lat: '',
-        lng: '',
-        coordinates: [],
-        cities: [],
-        country: [],
-        locations: [],
-        measurements: [],
-        tableStuff: [],
-    }
-});
-
-
-
 
 class LatLng {
     constructor(lat, lng){
@@ -52,38 +32,43 @@ function GetResultsLatLng() {
     $.ajax(request);
 
 }
+let app = new Vue ({
+    el: '#app',
 
-function MakeMarker(lat, lng) {
-    var stuff = '['+lat +','+lng+']';
-    L.marker(stuff).addTo(mymap);
-}
-function ParseResults(data) {
-
-    app.tableStuff =[];
-}
-// set max and min zoom to 16 and 9
-var app = new Vue{
-    el = '#app',
     data: {
+        lat: '',
+        lng: '',
         coordinates: [],
+        cities: [],
+        country: [],
         locations: [],
-        tableStuff: [],
-        seenLocations: [],
-        dataStuff: [],
+        measurements: [],
         seenUnits: [],
-        avgData: []
-    },
-}
+        seenLocations: [],
+        dataStuff:[],
+        averages: [],
+
+    }
+});
 
 function Clear() {
     var table = document.getElementById("map1_table");
-    for (var d in app.locations)
-        table.deleteRow(0);
+    if(app.locations.length > 0)
+        for (var d in app.locations)
+            table.deleteRow(0);
+    console.log("Clearing")
+
 
     app.locations = [];
+    app.seenUnits = [];
+    app.seenLocations = [];
+    app.dataStuff = [];
 }
-
+function ParseResults(data) {
+    
     Clear();
+    //console.log(app.dataStuff.length);
+
     for(var p in data.results)
         app.locations.push(data.results[p].location);
 
@@ -91,9 +76,14 @@ function Clear() {
         if(!app.seenUnits.includes(data.results[d].unit))
             app.seenUnits.push(data.results[d].unit);
 
+
+    // var end = data.results.length;
+
     for(var f in data.results)
-        var b = {location: data.results[f].location, value: data.results[f].value, unit: data.results[f].unit};
-        app.dataStuff.push(b);
+        //var b = {location: data.results[f].location, value: data.results[f].value, unit: data.results[f].unit, seen: false};
+        app.dataStuff.push({location: data.results[f].location, value: data.results[f].value, unit: data.results[f].unit, seen: false});
+        //console.log(b)
+
 
 
     for (var y in data.results)
@@ -110,15 +100,7 @@ function Clear() {
             makeMarkers(L.latLng(data.results[t].coordinates.latitude,
                 data.results[t].coordinates.longitude));
 
-    for (var r in app.seenLocations)
-        avg = 0;
-        var loc =app.seenLocations[r];
-        for(var a in app.seenUnits)
-            var uni = app.seenUnits[a]
-                for(var g in app.dataStuff)
-                    var count = 0;
-                    // if(app.dataStuff[g].location === loc && app.dataStuff[g].unit === uni)
-                    //     avg += app.dataStuff[g].value;
+    CalcAvg();
 }
 function seenLocation(location) {
     if (app.seenLocations.includes(location))
@@ -126,26 +108,44 @@ function seenLocation(location) {
     app.seenLocations.push(location);
     return 0
 }
-function makeMarkers(coord) {
-    var temp = L.marker(coord);
-    temp.bindPopup("")
+
+function CalcAvg() {
+    var count = 0;
+    var curAvg =0;
+    var curUnit, curLoc;
+    for (var x in app.seenLocations) {
+        curLoc = app.seenLocations[x];
+        for (var i in app.seenUnits) {
+            curUnit = app.seenUnits[i];
+            for (var y in app.dataStuff) {
+                var temp = app.dataStuff[y];
+                // match = (app.dataStuff[y].location === temp.location) && (app.dataStuff[y].unit === temp.unit)
+                if (app.dataStuff[y].location === temp.location){
+                    if(app.dataStuff[y].unit === temp.unit) {
+                        if (!app.dataStuff[y].seen) {
+                            if(!temp.seen)
+                                console.log(app.dataStuff[y].value + app.dataStuff[y].unit + ' ' + temp.value + temp.unit)
+                                curAvg = curAvg + app.dataStuff[y].value;
+                                temp.seen = true;
+                                app.dataStuff[y].seen = true;
+                                count = count + 1;
+                        }
+                    }
+                }
+            }
+            MakePopUp(curAvg/count, curUnit,curLoc);
+            curAvg =0;
+            count = 0;
+        }
+    }
 }
-function makeTable(city, country, coordinates, locations, values) {
 
-    for (var p in data.results)
-        app.tableStuff.push(data.results[p]);
+function makeMarkers(coord) {
+    L.marker(coord).addTo(mymap)
+}
 
-
-    for (var y in data.results)
-        makeTable(
-            app.tableStuff[y].city,
-            app.tableStuff[y].country,
-            new LatLng(app.tableStuff[y].coordinates.latitude,app.tableStuff[y].coordinates.longitude).toString(),
-            app.tableStuff[y].location,
-            app.tableStuff[y].value+' '+app.tableStuff[y].unit );
-
-    // for(var t in app.tableStuff)
-    //     MakeMarker(app.tableStuff[t].coordinates.latitude, app.tableStuff[t].coordinates.longitude);
+function MakePopUp(value, unit, loc) {
+    console.log(value + unit + loc)
 }
 
 function makeTable(city, country, coordinates, locations, values) {
@@ -167,7 +167,6 @@ function makeTable(city, country, coordinates, locations, values) {
 /******************************
  *      MAP STUFF IS HERE     *
  * ****************************/
-var mymap = L.map('map1',{minZoom:9, maxZoom: 16}).setView([44.9544, -93.0913], 9);
 var mymap = L.map('map1',{maxZoom: 16, minZoom: 9}).setView([44.9544, -93.0913], 3);
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
