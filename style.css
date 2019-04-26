@@ -1,21 +1,7 @@
 * {
     margin: 0 auto;
 }
-table, td {
-     border: 1px solid black;
-     width: 50%;
- }
-.no-js #loader { display: none;  }
-.js #loader { display: block; position: absolute; left: 100px; top: 0; }
-.se-pre-con {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background: url() center no-repeat #fff;
-}
+
 html {
     width: 100%;
     height:100%;
@@ -25,8 +11,8 @@ html {
 	<head>
 	<span class="floatleft"><link rel="stylesheet" href="style.css"/></span>
 			
-	a:link{color:rgb(255,255,255);text-decoration: none; padding: 0px 4px;}
-	a:visited{color:rgb(255,255,255);text-decoration: none;}
+	a:link{color:rgb(0,0,0);text-decoration: none; padding: 0px 4px;}
+	a:visited{color:rgb(0,0,0);text-decoration: none;}
 	a:focus{color:rgb(225,225,12);text-decoration: none;}
 	a:hover{font-style: italic; color:FF1A1A;text-decoration: none;}
 	a:active{color:rgb(10,10,10);text-decoration: none;}
@@ -41,6 +27,15 @@ html {
 		width:85rem;
 		table:hover{font-style: italic; color:FF1A1A;text-decoration: none;background-color:rgb(10,10,10);};
 	}
+#header
+	{
+		background-image: linear-gradient(to bottom right,rgb(0, 0, 0),rgb(105, 23, 94));
+		position:fixed;
+		width: 100%;
+		height:12rem;
+		text-align: left;
+		color: rgb(255,255,255);
+	}
 
 	body img
 	{
@@ -50,24 +45,12 @@ html {
 	}
 		#index
 	{
-		height:20rem;
-		width:10rem;
+		height:auto;
+		width:auto;
 		float:left;
 	}
 
-	#header
-	{
-		background-image: linear-gradient(to bottom right,rgb(0, 0, 0),rgb(105, 23, 94));
-		position:fixed;
-		left:0px; right:0px;
-		height:14rem;
-		text-align: left;
-		color: rgb(255,255,255);
-	}
-#header:hover
-{transition:0.6s;
-	background-color:rgb(25,55,25);
-}
+	
 	#header img 
 	{ 
 		float: left; 
@@ -79,7 +62,7 @@ html {
 	#bodytext
 	{
 		background-color : rgb(255, 218, 254);
-		padding-top :10.5rem;
+		padding-top :12.5rem;
 		vertical-align: center;
 		width: auto;
 		font-size: 1.25rem;
@@ -146,8 +129,6 @@ table p{
 #map{
 width:20rem;
 height: 20rem;
-
-
 float:left;
 padding:5rem;
 outline: none;
@@ -176,3 +157,32 @@ background-color:rgb(102, 102, 102);
  .orange{background-color: rgb(255, 126, 0);}
  .purple{background-color: rgb(143, 63, 151);}
  .maroon{background-color: rgb(126, 0, 35);}
+table, td {
+     border: 1px solid black;
+     width: 50%;
+ }
+#table1{
+	overflow-y: scroll;
+	height: 10rem;
+	width: 60rem;
+	display: block;
+	float: right;
+}
+#table2{
+	overflow-y: scroll;
+	height: 10rem;
+	width: 60rem;
+	display: block;
+	float: right;
+}
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url() center no-repeat #fff;
+}

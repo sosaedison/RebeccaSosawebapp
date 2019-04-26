@@ -46,8 +46,8 @@ console.log(prior);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
     console.log(radius);
-var url3=  "https://api.openaq.org/v1/measurements?coordinates="+Mymap.getCenter().lat+","+ Mymap.getCenter().lng+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date;
-var url4=  "https://api.openaq.org/v1/measurements?coordinates="+Mymap2.getCenter().lat+","+ Mymap2.getCenter().lng+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date;
+var url3=  "https://api.openaq.org/v1/measurements?coordinates="+Mymap.getCenter().lat+","+ Mymap.getCenter().lng+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
+var url4=  "https://api.openaq.org/v1/measurements?coordinates="+Mymap2.getCenter().lat+","+ Mymap2.getCenter().lng+"&radius="+radius2+"&date_from="+ prior+"&date_to="+ date+limit;
     GetJSON(url3, function(data) {
         data2 = data;
      for (var i = 0; i < data2.length; i++) {
@@ -97,9 +97,151 @@ var loncent2=Mymap2.getCenter().lng;
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
 var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
-var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
+var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius2+"&date_from="+ prior+"&date_to="+ date+limit;
+document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
 GetJSON(url3, function(data) {
-    
+       var locations = [];
+   var string="";
+    for(i in data.results){ 
+        if(locations.indexOf(data.results[i].location)===-1)
+        {
+            locations.push(data.results[i].location);
+        }
+        }
+
+        for(k in locations)
+        {
+            var countpm25;
+            countpm25=0;
+            var counto3;
+            counto3=0;
+            var countpm10;
+            countpm10=0;
+            var countco;
+            countco=0;
+             var countno2;
+            countno2=0;
+            var countso2;
+            countso2=0;
+        for(j in data.results)
+        {
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto3=counto3+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                    countco=countco+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                    countpm25=countpm25+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                    countpm10=countpm10+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                    countso2=countso2+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                    countno2=countno2+1;
+                     
+            }
+                  
+        }
+
+        for(g in locations)
+        {
+              var countpm252;
+            countpm252=0;
+            var counto32;
+            counto32=0;
+            var countpm102;
+            countpm102=0;
+            var countco2;
+            countco2=0;
+             var countno22;
+            countno22=0;
+            var countso22;
+            countso22=0;
+            var o3avg;
+            o3avg=0;
+            var coavg;
+            coavg=0;
+            var pm25avg;
+            pm25avg=0;
+            var pm10avg;
+            pm10avg=0;
+            var so2avg;
+            so2avg=0;
+            var no2avg;
+            no2avg=0;
+        for(j in data.results)
+        {
+            
+            
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto32++;
+                    o3avg=o3avg+data.results[j].value;
+                    
+        
+            }
+                         if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                     countco2++;
+                    coavg=coavg+data.results[j].value;
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                       countpm252++;
+                    pm25avg=pm25avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                       countpm102++;
+                    pm10avg=pm10avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                          countso22++;
+                    so2avg=so2avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                         countno22++;
+                    no2avg=no2avg+data.results[j].value;
+
+                     
+            }if(counto3===counto32&&countpm25===countpm252&&countco===countco2&&countpm10===countpm102&&countso2===countso22&&countno2===countno22)
+                {
+                    var marker = L.marker([data.results[j].coordinates.latitude, data.results[j].coordinates.longitude]).addTo(Mymap);
+                    marker.bindPopup(locations[k]+"<br> Average Value of no2 is"+no2avg/countno2+"<br> Average Value of so2 is"+so2avg/countso2+"</br> Average Value of O3 is"+o3avg/counto3+"</br> Average Value of co is"+coavg/countco2+"</br> Average Value of PM2.5 is"+pm25avg/countpm25+"</br> Average Value of pm10 is"+pm10avg/countpm10).openPopup();
+                }
+                  
+        }
+        
+        }
+        }
+
    $("#table1 tr").remove(); 
        table = document.getElementById('table1');    
         row = table.insertRow();
@@ -112,6 +254,7 @@ GetJSON(url3, function(data) {
         row.insertCell().innerHTML = "parameter";
         row.insertCell().innerHTML = "unit";       
         row.insertCell().innerHTML = "value";
+        
     for(i in data.results){ 
     table = document.getElementById('table1');    
         row = table.insertRow();
@@ -280,10 +423,145 @@ GetJSON(url3, function(data) {
                 row.className = "purple";
             } 
         }
-        var marker = L.marker([data.results[i].coordinates.latitude, data.results[i].coordinates.longitude]).addTo(Mymap);
     }
 })
-    GetJSON(url4, function(data) {$("#table2 tr").remove(); 
+    GetJSON(url4, function(data) {
+        var locations = [];
+   var string="";
+    for(i in data.results){ 
+        if(locations.indexOf(data.results[i].location)===-1)
+        {
+            locations.push(data.results[i].location);
+        }
+        }
+
+        for(k in locations)
+        {
+            var countpm25;
+            countpm25=0;
+            var counto3;
+            counto3=0;
+            var countpm10;
+            countpm10=0;
+            var countco;
+            countco=0;
+             var countno2;
+            countno2=0;
+            var countso2;
+            countso2=0;
+        for(j in data.results)
+        {
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto3=counto3+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                    countco=countco+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                    countpm25=countpm25+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                    countpm10=countpm10+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                    countso2=countso2+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                    countno2=countno2+1;
+                     
+            }
+                  
+        }
+
+        for(g in locations)
+        {
+              var countpm252;
+            countpm252=0;
+            var counto32;
+            counto32=0;
+            var countpm102;
+            countpm102=0;
+            var countco2;
+            countco2=0;
+             var countno22;
+            countno22=0;
+            var countso22;
+            countso22=0;
+            var o3avg;
+            o3avg=0;
+            var coavg;
+            coavg=0;
+            var pm25avg;
+            pm25avg=0;
+            var pm10avg;
+            pm10avg=0;
+            var so2avg;
+            so2avg=0;
+            var no2avg;
+            no2avg=0;
+        for(j in data.results)
+        {
+            
+            
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto32++;
+                    o3avg=o3avg+data.results[j].value;
+                    
+        
+            }
+                         if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                     countco2++;
+                    coavg=coavg+data.results[j].value;
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                       countpm252++;
+                    pm25avg=pm25avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                       countpm102++;
+                    pm10avg=pm10avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                          countso22++;
+                    so2avg=so2avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                         countno22++;
+                    no2avg=no2avg+data.results[j].value;
+
+                     
+            }if(counto3===counto32&&countpm25===countpm252&&countco===countco2&&countpm10===countpm102&&countso2===countso22&&countno2===countno22)
+                {
+                    var marker = L.marker([data.results[j].coordinates.latitude, data.results[j].coordinates.longitude]).addTo(Mymap2);
+                    marker.bindPopup(locations[k]+"<br> Average Value of no2 is"+no2avg/countno2+"<br> Average Value of so2 is"+so2avg/countso2+"</br> Average Value of O3 is"+o3avg/counto3+"</br> Average Value of co is"+coavg/countco2+"</br> Average Value of PM2.5 is"+pm25avg/countpm25+"</br> Average Value of pm10 is"+pm10avg/countpm10).openPopup();
+                }
+                  
+        }
+        
+        }
+        }
+
+     $("#table2 tr").remove(); 
        table = document.getElementById('table2');    
         row = table.insertRow();
         row.insertCell().innerHTML = "Country";
@@ -462,11 +740,9 @@ GetJSON(url3, function(data) {
             {
                 row.className = "purple";
             } 
-        }
-          var marker = L.marker([data.results[i].coordinates.latitude, data.results[i].coordinates.longitude]).addTo(Mymap2);  
+        }  
     } 
 })},2000);
-
 
 function GetResultsLatLng() {
      var lat = document.getElementById("lat").value;
@@ -539,10 +815,152 @@ var loncent2=Mymap2.getCenter().lng;
         var latlng3 = L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
+    document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
 var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
-var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
+var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius2+"&date_from="+ prior+"&date_to="+ date+limit;
 GetJSON(url3, function(data) {
-    
+       var locations = [];
+   var string="";
+    for(i in data.results){ 
+        if(locations.indexOf(data.results[i].location)===-1)
+        {
+            locations.push(data.results[i].location);
+        }
+        }
+
+        for(k in locations)
+        {
+            var countpm25;
+            countpm25=0;
+            var counto3;
+            counto3=0;
+            var countpm10;
+            countpm10=0;
+            var countco;
+            countco=0;
+             var countno2;
+            countno2=0;
+            var countso2;
+            countso2=0;
+        for(j in data.results)
+        {
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto3=counto3+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                    countco=countco+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                    countpm25=countpm25+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                    countpm10=countpm10+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                    countso2=countso2+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                    countno2=countno2+1;
+                     
+            }
+                  
+        }
+
+        for(g in locations)
+        {
+              var countpm252;
+            countpm252=0;
+            var counto32;
+            counto32=0;
+            var countpm102;
+            countpm102=0;
+            var countco2;
+            countco2=0;
+             var countno22;
+            countno22=0;
+            var countso22;
+            countso22=0;
+            var o3avg;
+            o3avg=0;
+            var coavg;
+            coavg=0;
+            var pm25avg;
+            pm25avg=0;
+            var pm10avg;
+            pm10avg=0;
+            var so2avg;
+            so2avg=0;
+            var no2avg;
+            no2avg=0;
+        for(j in data.results)
+        {
+            
+            
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto32++;
+                    o3avg=o3avg+data.results[j].value;
+                    
+        
+            }
+                         if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                     countco2++;
+                    coavg=coavg+data.results[j].value;
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                       countpm252++;
+                    pm25avg=pm25avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                       countpm102++;
+                    pm10avg=pm10avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                          countso22++;
+                    so2avg=so2avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                         countno22++;
+                    no2avg=no2avg+data.results[j].value;
+
+                     
+            }if(counto3===counto32&&countpm25===countpm252&&countco===countco2&&countpm10===countpm102&&countso2===countso22&&countno2===countno22)
+                {
+                    var marker = L.marker([data.results[j].coordinates.latitude, data.results[j].coordinates.longitude]).addTo(Mymap);
+                    marker.bindPopup(locations[k]+"<br> Average Value of no2 is"+no2avg/countno2+"<br> Average Value of so2 is"+so2avg/countso2+"</br> Average Value of O3 is"+o3avg/counto3+"</br> Average Value of co is"+coavg/countco2+"</br> Average Value of PM2.5 is"+pm25avg/countpm25+"</br> Average Value of pm10 is"+pm10avg/countpm10).openPopup();
+                }
+                  
+        }
+        
+        }
+        }
+
    $("#table1 tr").remove(); 
        table = document.getElementById('table1');    
         row = table.insertRow();
@@ -723,10 +1141,144 @@ GetJSON(url3, function(data) {
                 row.className = "purple";
             } 
         }
-        var marker = L.marker([data.results[i].coordinates.latitude, data.results[i].coordinates.longitude]).addTo(Mymap);
     }
 })
-    GetJSON(url4, function(data) {$("#table2 tr").remove(); 
+    GetJSON(url4, function(data) {
+        var locations = [];
+   var string="";
+    for(i in data.results){ 
+        if(locations.indexOf(data.results[i].location)===-1)
+        {
+            locations.push(data.results[i].location);
+        }
+        }
+
+        for(k in locations)
+        {
+            var countpm25;
+            countpm25=0;
+            var counto3;
+            counto3=0;
+            var countpm10;
+            countpm10=0;
+            var countco;
+            countco=0;
+             var countno2;
+            countno2=0;
+            var countso2;
+            countso2=0;
+        for(j in data.results)
+        {
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto3=counto3+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                    countco=countco+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                    countpm25=countpm25+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                    countpm10=countpm10+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                    countso2=countso2+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                    countno2=countno2+1;
+                     
+            }
+                  
+        }
+
+        for(g in locations)
+        {
+              var countpm252;
+            countpm252=0;
+            var counto32;
+            counto32=0;
+            var countpm102;
+            countpm102=0;
+            var countco2;
+            countco2=0;
+             var countno22;
+            countno22=0;
+            var countso22;
+            countso22=0;
+            var o3avg;
+            o3avg=0;
+            var coavg;
+            coavg=0;
+            var pm25avg;
+            pm25avg=0;
+            var pm10avg;
+            pm10avg=0;
+            var so2avg;
+            so2avg=0;
+            var no2avg;
+            no2avg=0;
+        for(j in data.results)
+        {
+            
+            
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto32++;
+                    o3avg=o3avg+data.results[j].value;
+                    
+        
+            }
+                         if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                     countco2++;
+                    coavg=coavg+data.results[j].value;
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                       countpm252++;
+                    pm25avg=pm25avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                       countpm102++;
+                    pm10avg=pm10avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                          countso22++;
+                    so2avg=so2avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                         countno22++;
+                    no2avg=no2avg+data.results[j].value;
+
+                     
+            }if(counto3===counto32&&countpm25===countpm252&&countco===countco2&&countpm10===countpm102&&countso2===countso22&&countno2===countno22)
+                {
+                    var marker = L.marker([data.results[j].coordinates.latitude, data.results[j].coordinates.longitude]).addTo(Mymap2);
+                    marker.bindPopup(locations[k]+"<br> Average Value of no2 is"+no2avg/countno2+"<br> Average Value of so2 is"+so2avg/countso2+"</br> Average Value of O3 is"+o3avg/counto3+"</br> Average Value of co is"+coavg/countco2+"</br> Average Value of PM2.5 is"+pm25avg/countpm25+"</br> Average Value of pm10 is"+pm10avg/countpm10).openPopup();
+                }
+                  
+        }
+        
+        }
+        }
+$("#table2 tr").remove(); 
        table = document.getElementById('table2');    
         row = table.insertRow();
         row.insertCell().innerHTML = "Country";
@@ -905,8 +1457,7 @@ GetJSON(url3, function(data) {
             {
                 row.className = "purple";
             } 
-        }
-          var marker = L.marker([data.results[i].coordinates.latitude, data.results[i].coordinates.longitude]).addTo(Mymap2);  
+        } 
     } 
 })},2000);
 //Mymap.on("", refreshData);
@@ -930,9 +1481,151 @@ var loncent2=Mymap2.getCenter().lng;
         var latlng3 = L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
-var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
-var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
+    document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
+var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
+var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius2+"&date_from="+ prior+"&date_to="+ date+limit;
 GetJSON(url3, function(data) {
+   var locations = [];
+   var string="";
+    for(i in data.results){ 
+        if(locations.indexOf(data.results[i].location)===-1)
+        {
+            locations.push(data.results[i].location);
+        }
+        }
+
+        for(k in locations)
+        {
+            var countpm25;
+            countpm25=0;
+            var counto3;
+            counto3=0;
+            var countpm10;
+            countpm10=0;
+            var countco;
+            countco=0;
+             var countno2;
+            countno2=0;
+            var countso2;
+            countso2=0;
+        for(j in data.results)
+        {
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto3=counto3+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                    countco=countco+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                    countpm25=countpm25+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                    countpm10=countpm10+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                    countso2=countso2+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                    countno2=countno2+1;
+                     
+            }
+                  
+        }
+
+        for(g in locations)
+        {
+              var countpm252;
+            countpm252=0;
+            var counto32;
+            counto32=0;
+            var countpm102;
+            countpm102=0;
+            var countco2;
+            countco2=0;
+             var countno22;
+            countno22=0;
+            var countso22;
+            countso22=0;
+            var o3avg;
+            o3avg=0;
+            var coavg;
+            coavg=0;
+            var pm25avg;
+            pm25avg=0;
+            var pm10avg;
+            pm10avg=0;
+            var so2avg;
+            so2avg=0;
+            var no2avg;
+            no2avg=0;
+        for(j in data.results)
+        {
+            
+            
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto32++;
+                    o3avg=o3avg+data.results[j].value;
+                    
+        
+            }
+                         if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                     countco2++;
+                    coavg=coavg+data.results[j].value;
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                       countpm252++;
+                    pm25avg=pm25avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                       countpm102++;
+                    pm10avg=pm10avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                          countso22++;
+                    so2avg=so2avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                         countno22++;
+                    no2avg=no2avg+data.results[j].value;
+
+                     
+            }if(counto3===counto32&&countpm25===countpm252&&countco===countco2&&countpm10===countpm102&&countso2===countso22&&countno2===countno22)
+                {
+                    var marker = L.marker([data.results[j].coordinates.latitude, data.results[j].coordinates.longitude]).addTo(Mymap);
+                    marker.bindPopup(locations[k]+"<br> Average Value of no2 is"+no2avg/countno2+"<br> Average Value of so2 is"+so2avg/countso2+"</br> Average Value of O3 is"+o3avg/counto3+"</br> Average Value of co is"+coavg/countco2+"</br> Average Value of PM2.5 is"+pm25avg/countpm25+"</br> Average Value of pm10 is"+pm10avg/countpm10).openPopup();
+                }
+                  
+        }
+        
+        }
+        }
 
    $("#table1 tr").remove(); 
        table = document.getElementById('table1');    
@@ -1113,8 +1806,7 @@ GetJSON(url3, function(data) {
             {
                 row.className = "purple";
             } 
-        }
-        var marker = L.marker([data.results[i].coordinates.latitude, data.results[i].coordinates.longitude]).addTo(Mymap);  
+        } 
     }
 })
    
@@ -1131,9 +1823,151 @@ var loncent2=Mymap2.getCenter().lng;
         var latlng3 = L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
-var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
-var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
+    document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
+var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
+var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius2+"&date_from="+ prior+"&date_to="+ date+limit;
 GetJSON(url3, function(data) {
+   var locations = [];
+   var string="";
+    for(i in data.results){ 
+        if(locations.indexOf(data.results[i].location)===-1)
+        {
+            locations.push(data.results[i].location);
+        }
+        }
+
+        for(k in locations)
+        {
+            var countpm25;
+            countpm25=0;
+            var counto3;
+            counto3=0;
+            var countpm10;
+            countpm10=0;
+            var countco;
+            countco=0;
+             var countno2;
+            countno2=0;
+            var countso2;
+            countso2=0;
+        for(j in data.results)
+        {
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto3=counto3+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                    countco=countco+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                    countpm25=countpm25+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                    countpm10=countpm10+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                    countso2=countso2+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                    countno2=countno2+1;
+                     
+            }
+                  
+        }
+
+        for(g in locations)
+        {
+              var countpm252;
+            countpm252=0;
+            var counto32;
+            counto32=0;
+            var countpm102;
+            countpm102=0;
+            var countco2;
+            countco2=0;
+             var countno22;
+            countno22=0;
+            var countso22;
+            countso22=0;
+            var o3avg;
+            o3avg=0;
+            var coavg;
+            coavg=0;
+            var pm25avg;
+            pm25avg=0;
+            var pm10avg;
+            pm10avg=0;
+            var so2avg;
+            so2avg=0;
+            var no2avg;
+            no2avg=0;
+        for(j in data.results)
+        {
+            
+            
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto32++;
+                    o3avg=o3avg+data.results[j].value;
+                    
+        
+            }
+                         if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                     countco2++;
+                    coavg=coavg+data.results[j].value;
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                       countpm252++;
+                    pm25avg=pm25avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                       countpm102++;
+                    pm10avg=pm10avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                          countso22++;
+                    so2avg=so2avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                         countno22++;
+                    no2avg=no2avg+data.results[j].value;
+
+                     
+            }if(counto3===counto32&&countpm25===countpm252&&countco===countco2&&countpm10===countpm102&&countso2===countso22&&countno2===countno22)
+                {
+                    var marker = L.marker([data.results[j].coordinates.latitude, data.results[j].coordinates.longitude]).addTo(Mymap);
+                    marker.bindPopup(locations[k]+"<br> Average Value of no2 is"+no2avg/countno2+"<br> Average Value of so2 is"+so2avg/countso2+"</br> Average Value of O3 is"+o3avg/counto3+"</br> Average Value of co is"+coavg/countco2+"</br> Average Value of PM2.5 is"+pm25avg/countpm25+"</br> Average Value of pm10 is"+pm10avg/countpm10).openPopup();
+                }
+                  
+        }
+        
+        }
+        }
 
    $("#table1 tr").remove(); 
        table = document.getElementById('table1');    
@@ -1315,7 +2149,6 @@ GetJSON(url3, function(data) {
                 row.className = "purple";
             } 
         }
-        var marker = L.marker([data.results[i].coordinates.latitude, data.results[i].coordinates.longitude]).addTo(Mymap);  
     }
 })
    
@@ -1332,10 +2165,153 @@ var loncent2=Mymap2.getCenter().lng;
         var latlng3 = L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
-var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
-var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
+    document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
+var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
+var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius2+"&date_from="+ prior+"&date_to="+ date+limit;
    
-    GetJSON(url4, function(data) {$("#table2 tr").remove(); 
+    GetJSON(url4, function(data) {
+        var locations = [];
+   var string="";
+    for(i in data.results){ 
+        if(locations.indexOf(data.results[i].location)===-1)
+        {
+            locations.push(data.results[i].location);
+        }
+        }
+
+        for(k in locations)
+        {
+            var countpm25;
+            countpm25=0;
+            var counto3;
+            counto3=0;
+            var countpm10;
+            countpm10=0;
+            var countco;
+            countco=0;
+             var countno2;
+            countno2=0;
+            var countso2;
+            countso2=0;
+        for(j in data.results)
+        {
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto3=counto3+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                    countco=countco+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                    countpm25=countpm25+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                    countpm10=countpm10+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                    countso2=countso2+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                    countno2=countno2+1;
+                     
+            }
+                  
+        }
+
+        for(g in locations)
+        {
+              var countpm252;
+            countpm252=0;
+            var counto32;
+            counto32=0;
+            var countpm102;
+            countpm102=0;
+            var countco2;
+            countco2=0;
+             var countno22;
+            countno22=0;
+            var countso22;
+            countso22=0;
+            var o3avg;
+            o3avg=0;
+            var coavg;
+            coavg=0;
+            var pm25avg;
+            pm25avg=0;
+            var pm10avg;
+            pm10avg=0;
+            var so2avg;
+            so2avg=0;
+            var no2avg;
+            no2avg=0;
+        for(j in data.results)
+        {
+            
+            
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto32++;
+                    o3avg=o3avg+data.results[j].value;
+                    
+        
+            }
+                         if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                     countco2++;
+                    coavg=coavg+data.results[j].value;
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                       countpm252++;
+                    pm25avg=pm25avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                       countpm102++;
+                    pm10avg=pm10avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                          countso22++;
+                    so2avg=so2avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                         countno22++;
+                    no2avg=no2avg+data.results[j].value;
+
+                     
+            }if(counto3===counto32&&countpm25===countpm252&&countco===countco2&&countpm10===countpm102&&countso2===countso22&&countno2===countno22)
+                {
+                    var marker = L.marker([data.results[j].coordinates.latitude, data.results[j].coordinates.longitude]).addTo(Mymap2);
+                    marker.bindPopup(locations[k]+"<br> Average Value of no2 is"+no2avg/countno2+"<br> Average Value of so2 is"+so2avg/countso2+"</br> Average Value of O3 is"+o3avg/counto3+"</br> Average Value of co is"+coavg/countco2+"</br> Average Value of PM2.5 is"+pm25avg/countpm25+"</br> Average Value of pm10 is"+pm10avg/countpm10).openPopup();
+                }
+                  
+        }
+        
+        }
+        }
+$("#table2 tr").remove(); 
        table = document.getElementById('table2');    
         row = table.insertRow();
         row.insertCell().innerHTML = "Country";
@@ -1524,8 +2500,7 @@ var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ l
                 row.className = "purple";
             } 
         }
-        //row.innerHTML += "</td>";
-        var marker = L.marker([data.results[i].coordinates.latitude, data.results[i].coordinates.longitude]).addTo(Mymap2);  
+        //row.innerHTML += "</td>"; 
     }
     
 })
@@ -1542,10 +2517,153 @@ var loncent2=Mymap2.getCenter().lng;
         var latlng3 = L.latLng(Mymap2.getCenter().lat, Mymap2.getCenter().lng);
     var latlng4 = L.latLng(Mymap2.getBounds().getNorth(), Mymap2.getCenter().lng);
     let radius2 = Mymap.distance(latlng3, latlng4);
-var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
-var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+"&limit="+limit;
+    document.getElementsByName('lat')[0].placeholder=latcent;
+document.getElementsByName('lon')[0].placeholder=loncent;
+document.getElementsByName('lat2')[0].placeholder=latcent2;
+document.getElementsByName('lon2')[0].placeholder=loncent2;
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent+","+loncent+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc')[0].placeholder=data[0].display_name;})
+GetJSON("https://nominatim.openstreetmap.org/search?q=" + latcent2+","+loncent2+ "&format=json&accept-language=en", function(data) {
+document.getElementsByName('loc2')[0].placeholder=data[0].display_name;})
+var url3=  "https://api.openaq.org/v1/measurements?coordinates="+latcent+","+ loncent+"&radius="+radius+"&date_from="+ prior+"&date_to="+ date+limit;
+var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ loncent2+"&radius="+radius2+"&date_from="+ prior+"&date_to="+ date+limit;
    
-    GetJSON(url4, function(data) {$("#table2 tr").remove(); 
+    GetJSON(url4, function(data) {
+        var locations = [];
+   var string="";
+    for(i in data.results){ 
+        if(locations.indexOf(data.results[i].location)===-1)
+        {
+            locations.push(data.results[i].location);
+        }
+        }
+
+        for(k in locations)
+        {
+            var countpm25;
+            countpm25=0;
+            var counto3;
+            counto3=0;
+            var countpm10;
+            countpm10=0;
+            var countco;
+            countco=0;
+             var countno2;
+            countno2=0;
+            var countso2;
+            countso2=0;
+        for(j in data.results)
+        {
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto3=counto3+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                    countco=countco+1;
+                     
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                    countpm25=countpm25+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                    countpm10=countpm10+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                    countso2=countso2+1;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                    countno2=countno2+1;
+                     
+            }
+                  
+        }
+
+        for(g in locations)
+        {
+              var countpm252;
+            countpm252=0;
+            var counto32;
+            counto32=0;
+            var countpm102;
+            countpm102=0;
+            var countco2;
+            countco2=0;
+             var countno22;
+            countno22=0;
+            var countso22;
+            countso22=0;
+            var o3avg;
+            o3avg=0;
+            var coavg;
+            coavg=0;
+            var pm25avg;
+            pm25avg=0;
+            var pm10avg;
+            pm10avg=0;
+            var so2avg;
+            so2avg=0;
+            var no2avg;
+            no2avg=0;
+        for(j in data.results)
+        {
+            
+            
+            if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="o3"))
+            {
+                    counto32++;
+                    o3avg=o3avg+data.results[j].value;
+                    
+        
+            }
+                         if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="co"))
+            {
+                     countco2++;
+                    coavg=coavg+data.results[j].value;
+            }
+             if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm25"))
+            {
+                       countpm252++;
+                    pm25avg=pm25avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="pm10"))
+            {
+                       countpm102++;
+                    pm10avg=pm10avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="so2"))
+            {
+                          countso22++;
+                    so2avg=so2avg+data.results[j].value;
+                     
+            }
+               if(((data.results[j].location)===locations[k]) &&(data.results[j].parameter==="no2"))
+            {
+                         countno22++;
+                    no2avg=no2avg+data.results[j].value;
+
+                     
+            }if(counto3===counto32&&countpm25===countpm252&&countco===countco2&&countpm10===countpm102&&countso2===countso22&&countno2===countno22)
+                {
+                    var marker = L.marker([data.results[j].coordinates.latitude, data.results[j].coordinates.longitude]).addTo(Mymap2);
+                    marker.bindPopup(locations[k]+"<br> Average Value of no2 is"+no2avg/countno2+"<br> Average Value of so2 is"+so2avg/countso2+"</br> Average Value of O3 is"+o3avg/counto3+"</br> Average Value of co is"+coavg/countco2+"</br> Average Value of PM2.5 is"+pm25avg/countpm25+"</br> Average Value of pm10 is"+pm10avg/countpm10).openPopup();
+                }
+                  
+        }
+        
+        }
+        }
+$("#table2 tr").remove(); 
        table = document.getElementById('table2');    
         row = table.insertRow();
         row.insertCell().innerHTML = "Country";
@@ -1595,6 +2713,7 @@ var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ l
              if(data.results[i].value>=35.5 &&data.results[i].value<55.5)
             {
                 row.className = "orange";
+
             }
              if(data.results[i].value>=55.5 &&data.results[i].value<150.5)
             {
@@ -1735,8 +2854,60 @@ var url4=  "https://api.openaq.org/v1/measurements?coordinates="+latcent2+","+ l
             } 
         }
         //row.innerHTML += "</td>";
-        var marker = L.marker([data.results[i].coordinates.latitude, data.results[i].coordinates.longitude]).addTo(Mymap2);  
     }
     
 })
 },4000);});
+function map1FullScreen(){
+    var Mymap= document.getElementById("map");
+    if(Mymap.requestFullscreen)
+        Mymap.requestFullscreen();
+    else if(Mymap.mozRequestFullscreen)
+        Mymap.mozRequestFullscreen();
+    else if(Mymap.webkitRequestFullscreen)
+        Mymap.webkitRequestFullscreen();
+    else if(Mymap.msRequestFullscreen)
+        Mymap.msRequestFullscreen();
+    else
+        console.log("foobar");
+}
+function closeFullScreen1(){
+    var Mymap= document.getElementById("map");
+    if(Mymap.exitFullscreen)
+        Mymap.exitFullscreen();
+    else if(Mymap.mozCancelFullscreen)
+        Mymap.mozCancelFullscreen();
+    else if(Mymap.webkitExitFullscreen)
+        Mymap.webkitExitFullscreen();
+    else if(Mymap.msExitFullscreen)
+        Mymap.msExitFullscreen();
+    else
+        console.log("foobar");
+}
+function map2FullScreen(){
+    var Mymap= document.getElementById("map2");
+    if(Mymap.requestFullscreen)
+        Mymap.requestFullscreen();
+    else if(Mymap.mozRequestFullscreen)
+        Mymap.mozRequestFullscreen();
+    else if(Mymap.webkitRequestFullscreen)
+        Mymap.webkitRequestFullscreen();
+    else if(Mymap.msRequestFullscreen)
+        Mymap.msRequestFullscreen();
+    else
+        console.log("foobar");
+}
+function closeFullScreen2(){
+    var Mymap= document.getElementById("map2");
+    if(Mymap.exitFullscreen)
+        Mymap.exitFullscreen();
+    else if(Mymap.mozCancelFullscreen)
+        Mymap.mozCancelFullscreen();
+    else if(Mymap.webkitExitFullscreen)
+        Mymap.webkitExitFullscreen();
+    else if(Mymap.msExitFullscreen)
+        Mymap.msExitFullscreen();
+    else
+        console.log("foobar");
+}
+
